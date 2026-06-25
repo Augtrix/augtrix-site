@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service — AUGTRIX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyber-blue: #00d9ff;
+            --dark-bg: #030303;
+            --grid-color: rgba(0, 217, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            min-height: 100vh;
+            background-image:
+                linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+            background-size: 45px 45px;
+            overflow-x: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        /* ── HEADER ── */
+        header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            padding: 10px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(3,3,3,0.98), rgba(3,3,3,0.85), transparent);
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        .brand-container { display: flex; align-items: center; gap: 20px; }
+
+        .brand-logo-box {
+            display: flex;
+            align-items: center;
+            height: 130px;
+            padding-right: 20px;
+            border-right: 1px solid rgba(0, 217, 255, 0.18);
+        }
+
+        .brand-logo-box img {
+            height: 100%;
+            width: auto;
+            display: block;
+            object-fit: contain;
+            filter: drop-shadow(0 0 12px rgba(0, 217, 255, 0.4));
+        }
+
+        .brand-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--cyber-blue);
+            text-shadow: 0 0 18px rgba(0, 217, 255, 0.35);
+        }
+
+        /* ── LANG SWITCHER ── */
+        .lang-switcher { position: relative; }
+
+        .lang-trigger {
+            display: flex; align-items: center; gap: 10px;
+            border: 1px solid var(--cyber-blue);
+            background: transparent; color: var(--cyber-blue);
+            padding: 10px 18px; font-size: 0.8rem; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            cursor: pointer; font-family: inherit;
+            transition: background 0.25s ease;
+        }
+        .lang-trigger:hover { background: rgba(0, 217, 255, 0.08); }
+        .lang-trigger svg { width: 10px; height: 10px; transition: transform 0.25s ease; }
+        .lang-switcher.open .lang-trigger svg { transform: rotate(180deg); }
+
+        .lang-dropdown {
+            position: absolute; top: calc(100% + 10px); right: 0;
+            min-width: 190px; background: #030303;
+            border: 1px solid var(--cyber-blue);
+            box-shadow: 0 0 35px rgba(0, 217, 255, 0.2);
+            display: none; flex-direction: column; z-index: 200;
+        }
+        .lang-switcher.open .lang-dropdown { display: flex; }
+
+        .lang-option {
+            background: transparent; border: none;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+            color: #cccccc; text-align: left;
+            padding: 12px 18px; font-size: 0.8rem;
+            letter-spacing: 1px; cursor: pointer; font-family: inherit;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .lang-option:last-child { border-bottom: none; }
+        .lang-option:hover, .lang-option.active {
+            background: rgba(0, 217, 255, 0.08); color: var(--cyber-blue);
+        }
+
+        .lang-loading {
+            position: fixed; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cyber-blue), transparent);
+            z-index: 9999; display: none;
+            animation: scanLine 1.2s linear infinite;
+        }
+        @keyframes scanLine { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        .lang-loading.active { display: block; }
+
+        /* ── MAIN CONTENT ── */
+        .main-content {
+            padding-top: 180px;
+            min-height: 100vh;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-bottom: 80px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 60px 20px 50px;
+        }
+
+        .hero-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--cyber-blue);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            opacity: 0.8;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            display: inline-block;
+            padding: 6px 14px;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
+        }
+
+        .hero-line {
+            width: 80px;
+            height: 2px;
+            background: var(--cyber-blue);
+            margin: 25px auto;
+            box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            font-weight: 300;
+            color: #888;
+            letter-spacing: 3px;
+            font-style: italic;
+        }
+
+        /* Policy Blocks */
+        .policy-block {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(0, 217, 255, 0.02);
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .policy-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--cyber-blue);
+            box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+        }
+
+        .block-header {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--cyber-blue);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            padding-left: 15px;
+        }
+
+        .block-content {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #aaa;
+            padding-left: 15px;
+        }
+
+        .block-content p {
+            margin-bottom: 15px;
+        }
+
+        .block-content strong {
+            color: #ddd;
+            font-weight: 600;
+        }
+
+        .block-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .block-content ul li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .block-content ul li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--cyber-blue);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .warning-box {
+            background: rgba(255, 50, 50, 0.03);
+            border: 1px solid rgba(255, 50, 50, 0.2);
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+
+        .warning-box p {
+            margin-bottom: 0 !important;
+            color: #ff8888;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid rgba(0, 217, 255, 0.08);
+            padding: 40px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #010101;
+        }
+
+        .footer-credits { font-size: 0.8rem; color: #555; letter-spacing: 1px; }
+
+        .footer-links a {
+            color: #777;
+            text-decoration: none;
+            font-size: 0.8rem;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover { color: var(--cyber-blue); }
+
+        /* ── MOBILE ── */
+        @media (max-width: 1024px) {
+            header { padding: 10px 20px; }
+            .brand-logo-box { height: 80px; padding-right: 14px; }
+            .main-content { padding-top: 120px; padding-left: 20px; padding-right: 20px; }
+            .hero-title { letter-spacing: 4px; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 10px 20px; flex-wrap: wrap; gap: 15px; }
+            .brand-logo-box { height: 70px; }
+            .brand-text { font-size: 1.1rem; letter-spacing: 3px; }
+            .main-content { padding-top: 110px; padding-left: 15px; padding-right: 15px; }
+            .hero-title { font-size: 1.8rem; letter-spacing: 3px; }
+            .policy-block { padding: 20px; }
+            footer {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+                padding: 30px 20px;
+            }
+            .footer-links a { margin: 0 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .brand-logo-box { height: 60px; }
+            .brand-text { font-size: 1rem; letter-spacing: 2px; }
+            .hero-title { font-size: 1.5rem; }
+            .block-content { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-loading" id="langLoading"></div>
+
+    <header>
+        <div class="brand-container">
+            <div class="brand-logo-box">
+                <a href="index.html" style="display:flex;align-items:center;height:100%;">
+                    <img src="Augtrix_Logo_cropped.webp" alt="AUGTRIX logo" loading="eager" decoding="async">
+                </a>
+            </div>
+            <div class="brand-text">Augtrix</div>
+        </div>
+
+        <div class="lang-switcher" id="langSwitcher">
+            <button class="lang-trigger" id="langTrigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+                <span id="langCurrent">EN</span>
+                <svg viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+            <div class="lang-dropdown" id="langDropdown" role="listbox">
+                <button class="lang-option active" data-lang="en" data-label="EN" type="button">English</button>
+                <button class="lang-option" data-lang="zh-CN" data-label="ZH" type="button">中文 (简体)</button>
+                <button class="lang-option" data-lang="fr" data-label="FR" type="button">Français</button>
+                <button class="lang-option" data-lang="de" data-label="DE" type="button">Deutsch</button>
+                <button class="lang-option" data-lang="ja" data-label="JA" type="button">日本語</button>
+                <button class="lang-option" data-lang="ko" data-label="KO" type="button">한국어</button>
+                <button class="lang-option" data-lang="pt" data-label="PT" type="button">Português</button>
+                <button class="lang-option" data-lang="es" data-label="ES" type="button">Español</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="hero-label" data-translate="hero-label">Protocol Overview</div>
+            <h1 class="hero-title" data-translate="hero-title">Terms of Service</h1>
+            <div class="hero-line"></div>
+            <p class="hero-subtitle" data-translate="hero-subtitle">System Architecture Protocol</p>
+        </section>
+
+        <div class="warning-box">
+            <p data-translate="warning-p1"><strong>Welcome to Augtrix (augtrix.com).</strong></p>
+            <p data-translate="warning-p2">By accessing our digital frame, deploying our virtual assets, or completing a transaction, you agree to comply with and be bound by the following system protocols.</p>
+            <p data-translate="warning-p3">These terms govern the relationship between Augtrix and any user accessing our high-fidelity digital fashion, papercrafts, and avatar assets.</p>
+        </div>
+
+        <div class="policy-block">
+            <div class="block-header" data-translate="block-01-header">// 01 / Intellectual Property & License</div>
+            <div class="block-content">
+                <p data-translate="block-01-p1">All digital products engineered by Augtrix are the exclusive intellectual property of the brand.</p>
+                <p data-translate="block-01-p2">Upon a successful transaction sequence, you are granted a non-exclusive license:</p>
+                <ul>
+                    <li data-translate="block-01-li1"><strong>Personal & Content Creator License:</strong> You are fully authorized to use the assets (.OBJ, .FBX, .GLB) for personal projects, social media content creation, and showcasing virtual status symbols.</li>
+                    <li data-translate="block-01-li2"><strong>Strictly No Reselling:</strong> You are strictly prohibited from reselling, sub-licensing, redistributing, or sharing the raw 3D files or texture maps on any digital marketplace, game engine store, or public repository.</li>
+                    <li data-translate="block-01-li3"><strong>Commercial Limitations:</strong> For standard digital assets, commercial exploitation (such as using the asset as a core element in a commercial video game or a mass-produced digital product) requires an explicit extended commercial license from Augtrix.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="policy-block">
+            <div class="block-header" data-translate="block-02-header">// 02 / System Rules & Ethical Use</div>
+            <div class="block-content">
+                <p data-translate="block-02-p1">When interacting with our ecosystem and deploying our assets, you agree to the following operational parameters:</p>
+                <ul>
+                    <li data-translate="block-02-li1"><strong>No Reverse Engineering:</strong> You agree not to reverse-engineer, decompile, or attempt to extract the underlying source mesh or proprietary code of our Snapchat Lenses or AR frameworks.</li>
+                    <li data-translate="block-02-li2"><strong>Content Integrity:</strong> When using Augtrix assets or filters for digital fashion or avatar performance upgrades, the assets must not be utilized in media that promotes hate speech, explicit illegal activity, or severe brand defamation.</li>
+                    <li data-translate="block-02-li3"><strong>Automated Scrapers:</strong> The use of automated bots, scrapers, or scripts to harvest data or bulk-download files from our main server frame is strictly monitored and banned.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="policy-block">
+            <div class="block-header" data-translate="block-03-header">// 03 / Liability & Termination</div>
+            <div class="block-content">
+                <ul>
+                    <li data-translate="block-03-li1"><strong>Operational As-Is:</strong> Augtrix assets are provided "as-is" with all high-fidelity specifications detailed on the product page. We do not guarantee absolute flawless integration across every third-party game engine or unoptimized legacy software.</li>
+                    <li data-translate="block-03-li2"><strong>Protocol Breach:</strong> Any verified breach of these terms—specifically the unauthorized redistribution or piracy of our master asset packages—will result in immediate termination of your digital access license and potential legal filing.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-credits" data-translate="footer-credits">© 2026 AUGTRIX. All Rights Reserved. SYSTEM ACTIVE.</div>
+        <div class="footer-links">
+            <a href="privacy-policy.html" data-translate="footer-privacy">Privacy Policy</a>
+            <a href="terms-of-service.html" data-translate="footer-tos">Terms of Service</a>
+            <a href="refund-policy.html" data-translate="footer-refund">Refund Policy</a>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        var STRINGS = {
+            'hero-label':         'Protocol Overview',
+            'hero-title':         'Terms of Service',
+            'hero-subtitle':      'System Architecture Protocol',
+            'warning-p1':         '<strong>Welcome to Augtrix (augtrix.com).</strong>',
+            'warning-p2':         'By accessing our digital frame, deploying our virtual assets, or completing a transaction, you agree to comply with and be bound by the following system protocols.',
+            'warning-p3':         'These terms govern the relationship between Augtrix and any user accessing our high-fidelity digital fashion, papercrafts, and avatar assets.',
+            'block-01-header':    '// 01 / Intellectual Property & License',
+            'block-01-p1':        'All digital products engineered by Augtrix are the exclusive intellectual property of the brand.',
+            'block-01-p2':        'Upon a successful transaction sequence, you are granted a non-exclusive license:',
+            'block-01-li1':       'Personal & Content Creator License: You are fully authorized to use the assets (.OBJ, .FBX, .GLB) for personal projects, social media content creation, and showcasing virtual status symbols.',
+            'block-01-li2':       'Strictly No Reselling: You are strictly prohibited from reselling, sub-licensing, redistributing, or sharing the raw 3D files or texture maps on any digital marketplace, game engine store, or public repository.',
+            'block-01-li3':       'Commercial Limitations: For standard digital assets, commercial exploitation (such as using the asset as a core element in a commercial video game or a mass-produced digital product) requires an explicit extended commercial license from Augtrix.',
+            'block-02-header':    '// 02 / System Rules & Ethical Use',
+            'block-02-p1':        'When interacting with our ecosystem and deploying our assets, you agree to the following operational parameters:',
+            'block-02-li1':       'No Reverse Engineering: You agree not to reverse-engineer, decompile, or attempt to extract the underlying source mesh or proprietary code of our Snapchat Lenses or AR frameworks.',
+            'block-02-li2':       'Content Integrity: When using Augtrix assets or filters for digital fashion or avatar performance upgrades, the assets must not be utilized in media that promotes hate speech, explicit illegal activity, or severe brand defamation.',
+            'block-02-li3':       'Automated Scrapers: The use of automated bots, scrapers, or scripts to harvest data or bulk-download files from our main server frame is strictly monitored and banned.',
+            'block-03-header':    '// 03 / Liability & Termination',
+            'block-03-li1':       'Operational As-Is: Augtrix assets are provided "as-is" with all high-fidelity specifications detailed on the product page. We do not guarantee absolute flawless integration across every third-party game engine or unoptimized legacy software.',
+            'block-03-li2':       'Protocol Breach: Any verified breach of these terms—specifically the unauthorized redistribution or piracy of our master asset packages—will result in immediate termination of your digital access license and potential legal filing.',
+            'footer-credits':     '© 2026 AUGTRIX. All Rights Reserved. SYSTEM ACTIVE.',
+            'footer-privacy':     'Privacy Policy',
+            'footer-tos':         'Terms of Service',
+            'footer-refund':      'Refund Policy'
+        };
+
+        var translationCache = { en: STRINGS };
+        var currentLang = 'en';
+        var loadingBar = document.getElementById('langLoading');
+        var pendingRequests = 0;
+
+        function showLoader() { 
+            loadingBar.classList.add('active'); 
+        }
+        function hideLoader() { 
+            pendingRequests--;
+            if (pendingRequests <= 0) {
+                loadingBar.classList.remove('active');
+                pendingRequests = 0;
+            }
+        }
+
+        function applyStrings(strings) {
+            document.querySelectorAll('[data-translate]').forEach(function(el) {
+                var key = el.getAttribute('data-translate');
+                if (strings[key] !== undefined) {
+                    el.innerHTML = strings[key];
+                }
+            });
+        }
+
+        function translateElement(key, text, langCode, translated) {
+            pendingRequests++;
+            showLoader();
+
+            var url = 'https://api.mymemory.translated.net/get?q=' + encodeURIComponent(text) + '&langpair=en|' + langCode;
+
+            fetch(url)
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    if (data.responseStatus === 200 && data.responseData && data.responseData.translatedText) {
+                        translated[key] = data.responseData.translatedText;
+                    } else {
+                        translated[key] = text;
+                    }
+                })
+                .catch(function() {
+                    translated[key] = text;
+                })
+                .finally(function() {
+                    hideLoader();
+                });
+        }
+
+        function translateAll(langCode) {
+            if (langCode === 'en') { 
+                applyStrings(STRINGS); 
+                document.documentElement.lang = 'en'; 
+                return; 
+            }
+
+            if (translationCache[langCode]) { 
+                applyStrings(translationCache[langCode]); 
+                document.documentElement.lang = langCode; 
+                return; 
+            }
+
+            var translated = {};
+            var keys = Object.keys(STRINGS);
+
+            keys.forEach(function(key, index) {
+                setTimeout(function() {
+                    translateElement(key, STRINGS[key], langCode, translated);
+                }, index * 150);
+            });
+
+            var checkInterval = setInterval(function() {
+                if (pendingRequests === 0) {
+                    clearInterval(checkInterval);
+                    translationCache[langCode] = translated;
+                    applyStrings(translated);
+                    document.documentElement.lang = langCode;
+                }
+            }, 500);
+        }
+
+        var switcher = document.getElementById('langSwitcher');
+        var trigger  = document.getElementById('langTrigger');
+        var dropdown = document.getElementById('langDropdown');
+        var currentLabel = document.getElementById('langCurrent');
+        var langOptions  = dropdown.querySelectorAll('.lang-option');
+
+        trigger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var isOpen = switcher.classList.toggle('open');
+            trigger.setAttribute('aria-expanded', isOpen);
+        });
+        document.addEventListener('click', function() {
+            switcher.classList.remove('open');
+            trigger.setAttribute('aria-expanded', 'false');
+        });
+
+        langOptions.forEach(function(opt) {
+            opt.addEventListener('click', function() {
+                var code  = this.getAttribute('data-lang');
+                var label = this.getAttribute('data-label');
+                if (code === currentLang) { switcher.classList.remove('open'); return; }
+                langOptions.forEach(function(o) { o.classList.remove('active'); });
+                this.classList.add('active');
+                currentLabel.textContent = label;
+                currentLang = code;
+                switcher.classList.remove('open');
+                translateAll(code);
+            });
+        });
+    });
+    </script>
+</body>
+</html>
