@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support — AUGTRIX</title>
+    <meta name="description" content="Augtrix Support — Submit technical anomalies, deployment issues, or general inquiries. Our engineering team responds within 24-48 hours.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyber-blue: #00d9ff;
+            --dark-bg: #030303;
+            --grid-color: rgba(0, 217, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            min-height: 100vh;
+            background-image:
+                linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+            background-size: 45px 45px;
+            overflow-x: hidden;
+        }
+
+        /* ── HEADER ── */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 10px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(3,3,3,0.98), rgba(3,3,3,0.85), transparent);
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+        }
+        .brand-container { display: flex; align-items: center; gap: 20px; }
+        .brand-logo-box {
+            display: flex; align-items: center;
+            height: 130px; padding-right: 20px;
+            border-right: 1px solid rgba(0, 217, 255, 0.18);
+        }
+        .brand-logo-box img {
+            height: 100%; width: auto; display: block; object-fit: contain;
+            filter: drop-shadow(0 0 12px rgba(0, 217, 255, 0.4));
+        }
+        .brand-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem; font-weight: 700; letter-spacing: 5px; text-transform: uppercase;
+            color: var(--cyber-blue); text-shadow: 0 0 18px rgba(0, 217, 255, 0.35);
+        }
+        .header-right { display: flex; align-items: center; gap: 14px; }
+        .site-nav { display: flex; align-items: center; gap: 4px; }
+        .nav-link {
+            color: #666; text-decoration: none; font-size: 0.72rem; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase; padding: 8px 13px;
+            border: 1px solid transparent;
+            transition: color 0.2s, border-color 0.2s, background 0.2s;
+        }
+        .nav-link:hover { color: var(--cyber-blue); border-color: rgba(0,217,255,0.2); }
+        .nav-link.active { color: var(--cyber-blue); border-color: rgba(0,217,255,0.35); background: rgba(0,217,255,0.04); }
+
+        /* ── LANG SWITCHER ── */
+        .lang-switcher { position: relative; }
+        .lang-trigger {
+            display: flex; align-items: center; gap: 10px;
+            border: 1px solid var(--cyber-blue); background: transparent; color: var(--cyber-blue);
+            padding: 10px 18px; font-size: 0.8rem; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: inherit;
+            transition: background 0.25s ease;
+        }
+        .lang-trigger:hover { background: rgba(0, 217, 255, 0.08); }
+        .lang-trigger svg { width: 10px; height: 10px; transition: transform 0.25s ease; }
+        .lang-switcher.open .lang-trigger svg { transform: rotate(180deg); }
+        .lang-dropdown {
+            position: absolute; top: calc(100% + 10px); right: 0;
+            min-width: 190px; background: #030303;
+            border: 1px solid var(--cyber-blue);
+            box-shadow: 0 0 35px rgba(0, 217, 255, 0.2);
+            display: none; flex-direction: column; z-index: 200;
+        }
+        .lang-switcher.open .lang-dropdown { display: flex; }
+        .lang-option {
+            background: transparent; border: none;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+            color: #cccccc; text-align: left;
+            padding: 12px 18px; font-size: 0.8rem; letter-spacing: 1px;
+            cursor: pointer; font-family: inherit;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .lang-option:last-child { border-bottom: none; }
+        .lang-option:hover, .lang-option.active { background: rgba(0,217,255,0.08); color: var(--cyber-blue); }
+
+        /* ── HAMBURGER ── */
+        .nav-hamburger {
+            display: none; flex-direction: column; justify-content: space-between;
+            width: 22px; height: 16px; background: none; border: none; cursor: pointer; padding: 0;
+        }
+        .nav-hamburger span { display: block; width: 100%; height: 2px; background: var(--cyber-blue); transition: transform 0.28s, opacity 0.28s; }
+        .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+        .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .mobile-nav-drawer {
+            display: none; position: fixed; inset: 0;
+            background: rgba(3,3,3,0.97); z-index: 99;
+            flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+            padding: 110px 30px 40px;
+        }
+        .mobile-nav-drawer.open { display: flex; }
+        .mobile-nav-drawer .nav-link {
+            font-size: 1rem; letter-spacing: 4px; padding: 14px 30px;
+            width: 100%; text-align: center; border: 1px solid rgba(0,217,255,0.12);
+        }
+
+        /* ── BACK TO AUGTRIX BAR ── */
+        .back-bar {
+            position: fixed;
+            top: 150px;
+            left: 50px;
+            z-index: 90;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            background: rgba(3, 3, 3, 0.8);
+            color: var(--cyber-blue);
+            padding: 8px 16px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(8px);
+        }
+        .back-btn:hover {
+            background: rgba(0, 217, 255, 0.08);
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.2);
+        }
+        .back-btn svg {
+            width: 10px;
+            height: 10px;
+            fill: currentColor;
+        }
+        .system-tag-inline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(0, 217, 255, 0.25);
+            background: rgba(3, 3, 3, 0.6);
+            color: var(--cyber-blue);
+            padding: 8px 16px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-family: monospace;
+            backdrop-filter: blur(8px);
+        }
+
+        /* ── HERO SECTION ── */
+        .support-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 200px 60px 100px;
+            overflow: hidden;
+        }
+
+        /* Logo watermark */
+        .support-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('Augtrix_Logo_cropped.webp');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 65%;
+            opacity: 0.03;
+            filter: drop-shadow(0 0 60px rgba(0,217,255,0.3));
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative; z-index: 1;
+            max-width: 860px; width: 100%;
+            text-align: center;
+        }
+
+        .hero-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-system-tag {
+            font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase;
+            color: var(--cyber-blue); opacity: 0.7; margin-bottom: 24px;
+            font-family: monospace;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 700; line-height: 1.0;
+            letter-spacing: -2px; text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+        .hero-title .line-dim { color: #333; display: block; }
+        .hero-title .line-glow {
+            color: var(--cyber-blue); display: block;
+            text-shadow: 0 0 30px rgba(0,217,255,0.5), 0 0 80px rgba(0,217,255,0.2);
+        }
+
+        .hero-divider {
+            width: 80px; height: 1px;
+            background: linear-gradient(to right, transparent, var(--cyber-blue), transparent);
+            margin: 0 auto 30px;
+        }
+
+        .hero-intro {
+            font-size: clamp(1rem, 2.2vw, 1.25rem);
+            color: #888; line-height: 1.9;
+            max-width: 680px; margin: 0 auto 40px;
+        }
+        .hero-intro strong { color: #ccc; }
+
+        /* ── SUPPORT FORM SECTION ── */
+        .support-section {
+            position: relative;
+            padding: 100px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            font-size: 0.68rem; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--cyber-blue); opacity: 0.65; margin-bottom: 16px;
+            font-family: monospace;
+        }
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 700; letter-spacing: -1px; text-transform: uppercase;
+            margin-bottom: 24px; line-height: 1.1;
+        }
+        .section-title span { color: var(--cyber-blue); }
+        .section-body {
+            color: #777; font-size: 1rem; line-height: 1.95;
+            max-width: 720px;
+        }
+        .section-body + .section-body { margin-top: 18px; }
+        .section-body strong { color: #bbb; }
+
+        /* ── FORM STYLES ── */
+        .support-form-wrap {
+            margin-top: 50px;
+            border: 1px solid rgba(0,217,255,0.12);
+            background: rgba(0,217,255,0.015);
+            padding: 50px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .support-form-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(to right, transparent, var(--cyber-blue), transparent);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-label {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--cyber-blue);
+            font-weight: 700;
+            opacity: 0.8;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 217, 255, 0.15);
+            color: #fff;
+            padding: 14px 18px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.15);
+        }
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: #444;
+        }
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2300d9ff' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+        }
+        .form-select option {
+            background: #030303;
+            color: #fff;
+            padding: 10px;
+        }
+        .form-textarea {
+            min-height: 160px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            border: 1px solid var(--cyber-blue);
+            background: transparent;
+            color: #fff;
+            padding: 16px 40px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            width: 100%;
+        }
+        .form-submit:hover {
+            background: var(--cyber-blue);
+            color: #000;
+            box-shadow: 0 0 25px rgba(0,217,255,0.5);
+        }
+        .form-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Success / Error messages */
+        .form-message {
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            border: 1px solid;
+            font-size: 0.85rem;
+            display: none;
+        }
+        .form-message.visible { display: block; }
+        .form-message.success {
+            border-color: rgba(0, 217, 255, 0.4);
+            background: rgba(0, 217, 255, 0.05);
+            color: var(--cyber-blue);
+        }
+        .form-message.error {
+            border-color: rgba(255, 50, 50, 0.4);
+            background: rgba(255, 50, 50, 0.05);
+            color: #ff5555;
+        }
+
+        /* Honeypot */
+        .honeypot { display: none !important; }
+
+        /* ── FAQ SECTION ── */
+        .faq-section {
+            position: relative;
+            padding: 100px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-top: 50px;
+        }
+        .faq-item {
+            border: 1px solid rgba(0,217,255,0.06);
+            background: rgba(0,0,0,0.2);
+            transition: border-color 0.3s;
+        }
+        .faq-item:hover { border-color: rgba(0,217,255,0.2); }
+        .faq-question {
+            padding: 24px 26px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fff;
+            transition: color 0.2s;
+        }
+        .faq-question:hover { color: var(--cyber-blue); }
+        .faq-question svg {
+            width: 14px; height: 14px;
+            fill: var(--cyber-blue);
+            opacity: 0.5;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 16px;
+        }
+        .faq-item.open .faq-question svg { transform: rotate(180deg); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            padding: 0 26px;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 400px;
+            padding: 0 26px 24px;
+        }
+        .faq-answer p {
+            color: #555;
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+        .faq-answer p strong { color: #999; }
+        .faq-answer a {
+            color: var(--cyber-blue);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.3);
+            transition: border-color 0.2s;
+        }
+        .faq-answer a:hover {
+            border-color: var(--cyber-blue);
+        }
+
+        /* ── CLOSING CALL ── */
+        .closing-section {
+            position: relative;
+            text-align: center;
+            padding: 120px 60px;
+            overflow: hidden;
+        }
+        .closing-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('Augtrix_Logo_cropped.webp');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 50%;
+            opacity: 0.025;
+            pointer-events: none;
+        }
+        .closing-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+        .closing-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700; text-transform: uppercase; letter-spacing: -1px;
+            margin-bottom: 20px; line-height: 1.1;
+        }
+        .closing-title span { color: var(--cyber-blue); text-shadow: 0 0 30px rgba(0,217,255,0.4); }
+        .closing-sub { color: #555; font-size: 0.9rem; line-height: 1.8; margin-bottom: 40px; }
+        .closing-actions { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .btn-primary {
+            border: 1px solid var(--cyber-blue); background: transparent; color: #fff;
+            padding: 14px 32px; font-size: 0.8rem; font-weight: 700;
+            letter-spacing: 3px; text-transform: uppercase; cursor: pointer;
+            text-decoration: none; display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover { background: var(--cyber-blue); color: #000; box-shadow: 0 0 25px rgba(0,217,255,0.5); }
+        .btn-ghost {
+            color: #555; font-size: 0.75rem; font-weight: 700; letter-spacing: 3px;
+            text-transform: uppercase; text-decoration: none;
+            transition: color 0.2s;
+        }
+        .btn-ghost:hover { color: var(--cyber-blue); }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid rgba(0, 217, 255, 0.08);
+            padding: 40px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: #010101;
+        }
+        .footer-credits { font-size: 0.8rem; color: #555; letter-spacing: 1px; }
+        .footer-links a { color: #777; text-decoration: none; font-size: 0.8rem; margin-left: 20px; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--cyber-blue); }
+
+        /* ── SOCIAL BAR ── */
+        .social-bar {
+            display: flex; justify-content: center; align-items: center;
+            gap: 22px; padding: 24px 50px;
+            border-top: 1px solid rgba(0, 217, 255, 0.06);
+            background: #010101;
+        }
+        .social-icon {
+            display: flex; align-items: center; justify-content: center;
+            width: 38px; height: 38px;
+            border: 1px solid rgba(0, 217, 255, 0.25); border-radius: 50%;
+            color: #888; cursor: pointer; transition: all 0.3s ease; text-decoration: none;
+        }
+        .social-icon svg { width: 16px; height: 16px; fill: currentColor; }
+        .social-icon:hover { color: var(--cyber-blue); border-color: var(--cyber-blue); box-shadow: 0 0 14px rgba(0,217,255,0.35); transform: translateY(-2px); }
+
+        /* ── MOBILE ── */
+        @media (max-width: 1024px) {
+            header { position: relative; padding: 10px 20px; }
+            .site-nav { display: none; }
+            .nav-hamburger { display: flex; }
+            .brand-logo-box { height: 80px; padding-right: 14px; }
+
+            .back-bar {
+                position: relative;
+                top: auto;
+                left: auto;
+                padding: 20px 20px 0;
+                text-align: center;
+            }
+
+            .support-hero { padding: 40px 24px 80px; min-height: auto; }
+            .support-hero::before { background-size: 100%; opacity: 0.025; }
+
+            .hero-top-bar {
+                margin-bottom: 30px;
+            }
+
+            .support-section { padding: 70px 24px; }
+            .faq-section { padding: 70px 24px; }
+
+            .support-form-wrap { padding: 36px 24px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
+
+            .closing-section { padding: 80px 24px; }
+            .closing-section::before { background-size: 90%; }
+
+            footer { flex-direction: column; gap: 20px; text-align: center; padding: 30px 20px; }
+            .footer-links a { margin: 0 10px; }
+            .social-bar { gap: 16px; padding: 20px; flex-wrap: wrap; }
+            .social-icon { width: 34px; height: 34px; }
+            .social-icon svg { width: 14px; height: 14px; }
+        }
+
+        @media (max-width: 480px) {
+            header { padding: 8px 16px; }
+            .brand-logo-box { height: 64px; }
+            .brand-text { font-size: 1.1rem; letter-spacing: 3px; }
+            .support-hero { padding: 30px 16px 60px; }
+            .support-section { padding: 60px 16px; }
+            .faq-section { padding: 60px 16px; }
+            .support-form-wrap { padding: 28px 16px; }
+            .closing-section { padding: 60px 16px; }
+            .back-bar { padding: 16px 16px 0; }
+            .back-btn, .system-tag-inline {
+                font-size: 0.6rem;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Mobile nav drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Shop</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="support.html" class="nav-link active">Support</a>
+    </div>
+
+    <header>
+        <div class="brand-container">
+            <div class="brand-logo-box">
+                <img src="Augtrix_Logo_cropped.webp" alt="AUGTRIX logo" loading="eager" decoding="async">
+            </div>
+            <div class="brand-text">Augtrix</div>
+        </div>
+        <div class="header-right">
+            <nav class="site-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="support.html" class="nav-link active">Support</a>
+            </nav>
+            <div class="lang-switcher" id="langSwitcher">
+                <button class="lang-trigger" id="langTrigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+                    <span id="langCurrent">EN</span>
+                    <svg viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5"/></svg>
+                </button>
+                <div class="lang-dropdown" id="langDropdown" role="listbox">
+                    <button class="lang-option active" data-lang="en" data-label="EN" type="button">English</button>
+                    <button class="lang-option" data-lang="zh-CN" data-label="ZH" type="button">中文 (简体)</button>
+                    <button class="lang-option" data-lang="fr" data-label="FR" type="button">Français</button>
+                    <button class="lang-option" data-lang="de" data-label="DE" type="button">Deutsch</button>
+                    <button class="lang-option" data-lang="ja" data-label="JA" type="button">日本語</button>
+                    <button class="lang-option" data-lang="ko" data-label="KO" type="button">한국어</button>
+                    <button class="lang-option" data-lang="pt" data-label="PT" type="button">Português</button>
+                    <button class="lang-option" data-lang="es" data-label="ES" type="button">Español</button>
+                </div>
+            </div>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Back to Augtrix Bar -->
+    <div class="back-bar">
+        <a href="index.html" class="back-btn">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M6 1L1 6L6 11" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M1 6H11" stroke="currentColor" stroke-width="1.5"/></svg>
+            Back to Augtrix
+        </a>
+        <span class="system-tag-inline">// System Support</span>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         HERO — Logo watermark bg
+    ══════════════════════════════════════════ -->
+    <div class="support-hero">
+        <div class="hero-content">
+            <div class="hero-system-tag">// System: AUGTRIX — Support Protocol v1.0</div>
+            <h1 class="hero-title">
+                <span class="line-dim">Initiate</span>
+                <span class="line-glow">Support</span>
+                <span class="line-dim">Protocol</span>
+            </h1>
+            <div class="hero-divider"></div>
+            <p class="hero-intro">
+                Encountering a technical anomaly or deployment issue? Submit your request below and our
+                <strong>engineering team will respond within 24-48 hours.</strong>
+                For order-related queries, have your Order ID ready.
+            </p>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SUPPORT FORM
+    ══════════════════════════════════════════ -->
+    <section class="support-section">
+        <div class="section-tag">// 01 — Transmit Request</div>
+        <h2 class="section-title">Submit Your <span>Support Ticket</span></h2>
+        <p class="section-body">
+            Fill out the form below with as much detail as possible. Include error messages,
+            steps to reproduce, and any relevant system information. The more data you provide,
+            the faster we can resolve your issue.
+        </p>
+
+        <div class="support-form-wrap">
+            <div class="form-message" id="formMessage"></div>
+
+            <form id="supportForm" action="https://api.web3forms.com/submit" method="POST">
+                <!-- Web3Forms Access Key -->
+                <input type="hidden" name="access_key" value="972bacc7-712b-48d1-988e-b1ef3f4397c9">
+                <!-- Subject for email -->
+                <input type="hidden" name="subject" value="[AUGTRIX] New Support Request">
+                <!-- From name -->
+                <input type="hidden" name="from_name" value="Augtrix Support System">
+                <!-- Honeypot Spam Protection -->
+                <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off">
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="firstName">First Name</label>
+                        <input class="form-input" type="text" id="firstName" name="first_name" placeholder="Your first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lastName">Last Name</label>
+                        <input class="form-input" type="text" id="lastName" name="last_name" placeholder="Your last name" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label" for="email">Email Address</label>
+                        <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label" for="orderId">Order ID (If Applicable)</label>
+                        <input class="form-input" type="text" id="orderId" name="order_id" placeholder="e.g. AUG-00123">
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label" for="issueType">Issue Type</label>
+                        <select class="form-select" id="issueType" name="issue_type" required>
+                            <option value="" disabled selected>Select issue category</option>
+                            <option value="download">Download / Delivery Issue</option>
+                            <option value="file-corruption">File Corruption or Error</option>
+                            <option value="ar-lens">AR Lens / Snapcode Issue</option>
+                            <option value="billing">Billing / Payment Issue</option>
+                            <option value="license">License / Usage Question</option>
+                            <option value="technical">Technical Integration Help</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label" for="message">Describe Your Issue</label>
+                        <textarea class="form-textarea" id="message" name="message" placeholder="Describe the issue in detail — include any error messages, steps to reproduce, or relevant system information..." required></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="form-submit" id="submitBtn">// Transmit Support Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         FAQ
+    ══════════════════════════════════════════ -->
+    <section class="faq-section">
+        <div class="section-tag">// 02 — Knowledge Base</div>
+        <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+        <p class="section-body">
+            Before submitting a ticket, check if your question has already been answered below.
+        </p>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do I access my purchased asset pack?
+                    <svg viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div class="faq-answer">
+                    <p>After completing your purchase, you will receive a download link via email within minutes. The asset pack includes all file formats (OBJ, FBX, GLB), 4K texture maps, cinematic renders, and a readme manual. If you do not receive the email within 15 minutes, check your spam folder or submit a support ticket with your Order ID.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What platforms are Augtrix assets compatible with?
+                    <svg viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div class="faq-answer">
+                    <p>Augtrix assets are built for universal deployment. Our 3D models work with <strong>Blender, Unity, Unreal Engine, Metaverse platforms, TikTok, Snapchat, VTube Studio, and Animaze.</strong> The included GLB format ensures instant compatibility with any WebGL or AR framework.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How does the Snapchat lens try-on work?
+                    <svg viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div class="faq-answer">
+                    <p>Every product page on augtrix.com features a live Snapchat lens try-on. Simply click the lens link or scan the Snapcode on your mobile device to open the effect directly in Snapchat. The lens uses face-tracking technology to overlay the cybermask in real-time. <strong>Lower your eyebrows to activate the internal hot fire glow projection. Raise your eyebrows to terminate emission loops.</strong> No account or app installation is required to try it.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What is your refund policy?
+                    <svg viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div class="faq-answer">
+                    <p>Due to the digital nature of our products, all sales are final once the download link has been accessed. However, if you experience a technical issue that prevents you from using the asset, contact us within <strong>7 days of purchase</strong> with your Order ID and we will work with you to resolve the issue or provide a replacement. For the complete policy, please refer to our <a href="refund-policy.html">Refund Policy</a> page.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can I use Augtrix assets for commercial projects?
+                    <svg viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. Every Augtrix asset pack comes with a <strong>personal and commercial use license.</strong> You may use the assets in streams, videos, games, metaverse avatars, and client projects. Reselling the raw files or redistributing them as standalone products is prohibited. Full license terms are included in the readme file with each download.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CLOSING CALL TO ACTION
+    ══════════════════════════════════════════ -->
+    <div class="closing-section">
+        <div class="closing-inner">
+            <div class="section-tag" style="margin-bottom:20px;">// Still Need Help?</div>
+            <h2 class="closing-title">
+                We Are Here<br>
+                <span>24 / 7</span>
+            </h2>
+            <p class="closing-sub">
+                Our engineering team monitors all incoming support requests around the clock.
+                Average response time is under 24 hours. For urgent matters, include "URGENT" in your issue description.
+            </p>
+            <div class="closing-actions">
+                <a href="shop.html" class="btn-primary">Explore Drops</a>
+                <a href="about.html" class="btn-ghost">About Augtrix →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+        <div class="footer-credits">© 2026 AUGTRIX. All Rights Reserved. SYSTEM ACTIVE.</div>
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-of-service.html">Terms of Service</a>
+            <a href="refund-policy.html">Refund Policy</a>
+        </div>
+    </footer>
+
+    <div class="social-bar">
+        <a class="social-icon" href="https://www.snapchat.com/add/augtrixlabs?share_id=Fz3Td2U_nJk&locale=en-US" target="_blank" rel="noopener" aria-label="Snapchat">
+            <svg viewBox="0 0 24 24"><path d="M12.166 1.999c2.241 0 4.13 1.55 4.617 3.638.085.36.114.736.114 1.114v1.95c.371.183.747.36 1.13.518.279.115.59.07.84-.115.13-.097.295-.143.46-.097.207.058.357.252.367.477.012.27-.16.51-.39.629-.385.196-.78.37-1.18.527-.13.05-.21.176-.197.317.04.43.13.857.27 1.27.42 1.25 1.18 2.34 2.2 3.16.13.104.21.27.21.44 0 .27-.21.49-.47.51-.42.04-.84.13-1.23.27a.65.65 0 0 0-.42.55c-.03.27-.06.54-.13.8-.06.24-.27.4-.51.4-.06 0-.13-.01-.19-.03-.5-.16-1.02-.24-1.55-.24-.31 0-.62.03-.92.09-.5.1-.93.39-1.21.81-.74 1.1-1.97 1.76-3.31 1.76-1.34 0-2.57-.66-3.31-1.76-.28-.42-.71-.71-1.21-.81-.3-.06-.61-.09-.92-.09-.53 0-1.05.08-1.55.24-.06.02-.13.03-.19.03-.24 0-.45-.16-.51-.4-.07-.26-.1-.53-.13-.8a.65.65 0 0 0-.42-.55c-.39-.14-.81-.23-1.23-.27a.51.51 0 0 1-.47-.51c0-.17.08-.336.21-.44 1.02-.82 1.78-1.91 2.2-3.16.14-.413.23-.84.27-1.27.013-.141-.067-.267-.197-.317-.4-.157-.795-.331-1.18-.527-.23-.119-.402-.36-.39-.629.01-.225.16-.42.367-.477.165-.046.33 0 .46.097.25.185.561.23.84.115.383-.158.759-.335 1.13-.518V6.75c0-.378.029-.755.114-1.114.487-2.088 2.376-3.638 4.617-3.638z"/></svg>
+        </a>
+        <a class="social-icon social-soon" href="javascript:void(0)" aria-label="Pinterest">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.219-.937 1.406-5.957 1.406-5.957s-.359-.719-.359-1.781c0-1.663.967-2.911 2.171-2.911 1.023 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.131 0 3.768-2.247 3.768-5.487 0-2.861-2.056-4.86-4.992-4.86-3.4 0-5.396 2.551-5.396 5.188 0 1.027.395 2.127.889 2.726.097.118.112.222.083.343-.09.375-.293 1.199-.332 1.363-.053.225-.172.271-.402.165-1.495-.69-2.43-2.878-2.43-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.747-1.378 0 0-.602 2.291-.748 2.85-.271 1.041-1.002 2.349-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+        </a>
+        <a class="social-icon social-soon" href="javascript:void(0)" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a class="social-icon social-soon" href="javascript:void(0)" aria-label="Discord">
+            <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        </a>
+        <a class="social-icon social-soon" href="javascript:void(0)" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a class="social-icon social-soon" href="javascript:void(0)" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        /* Hamburger */
+        var hamburger = document.getElementById('navHamburger');
+        var drawer    = document.getElementById('mobileNavDrawer');
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var isOpen = drawer.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', String(isOpen));
+        });
+        document.addEventListener('click', function(e) {
+            if (!drawer.contains(e.target) && e.target !== hamburger) {
+                drawer.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        /* Lang switcher */
+        var switcher     = document.getElementById('langSwitcher');
+        var trigger      = document.getElementById('langTrigger');
+        var langOptions  = document.querySelectorAll('.lang-option');
+        var currentLabel = document.getElementById('langCurrent');
+        trigger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var isOpen = switcher.classList.toggle('open');
+            trigger.setAttribute('aria-expanded', isOpen);
+        });
+        document.addEventListener('click', function() {
+            switcher.classList.remove('open');
+            trigger.setAttribute('aria-expanded', 'false');
+        });
+        langOptions.forEach(function(opt) {
+            opt.addEventListener('click', function() {
+                langOptions.forEach(function(o) { o.classList.remove('active'); });
+                opt.classList.add('active');
+                currentLabel.textContent = opt.getAttribute('data-label');
+                switcher.classList.remove('open');
+            });
+        });
+
+        /* Social soon */
+        document.querySelectorAll('.social-soon').forEach(function(icon) {
+            icon.addEventListener('click', function() {
+                alert('Coming Soon — Augtrix ' + icon.getAttribute('aria-label') + ' Launching Shortly.');
+            });
+        });
+
+        /* FAQ Accordion */
+        document.querySelectorAll('.faq-question').forEach(function(q) {
+            q.addEventListener('click', function() {
+                var item = q.parentElement;
+                var isOpen = item.classList.contains('open');
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+                // Open clicked if it was closed
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+
+        /* Form handling with fetch for AJAX submission */
+        var form = document.getElementById('supportForm');
+        var submitBtn = document.getElementById('submitBtn');
+        var formMessage = document.getElementById('formMessage');
+
+        function showMessage(text, type) {
+            formMessage.textContent = text;
+            formMessage.className = 'form-message ' + type + ' visible';
+        }
+        function hideMessage() {
+            formMessage.className = 'form-message';
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.textContent = '// Transmitting...';
+            hideMessage();
+
+            var formData = new FormData(form);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    showMessage('Support request transmitted successfully. Our engineering team will respond within 24-48 hours.', 'success');
+                    form.reset();
+                } else {
+                    return response.json().then(function(data) {
+                        throw new Error(data.message || 'Transmission failed. Please try again.');
+                    });
+                }
+            })
+            .catch(function(error) {
+                showMessage(error.message || 'Transmission failed. Please check your connection and try again.', 'error');
+            })
+            .finally(function() {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '// Transmit Support Request';
+            });
+        });
+
+    });
+    </script>
+
+</body>
+</html>
