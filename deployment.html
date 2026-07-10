@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Guide — Use Predator Cybermask in Blender, Unity, Unreal, VTube Studio</title>
+    <meta name="description" content="Step-by-step guide to deploy the Augtrix Predator Cybermask in Blender, Unity, Unreal Engine 5, VTube Studio, Animaze, Cinema 4D & Maya. Free tutorial + video walkthroughs.">
+    <meta name="keywords" content="how to import GLB Blender, VTube Studio custom avatar import, Unity AR mask setup, Unreal Engine 5 avatar import, Animaze custom avatar guide, deploy 3D avatar VTuber, Cinema 4D GLB import, Maya FBX import, AR mask deployment guide">
+    <meta name="author" content="Augtrix">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://augtrix.com/deployment.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Deployment Guide — Predator Cybermask in Blender, Unity, Unreal, VTube Studio">
+    <meta property="og:description" content="Step-by-step tutorial to deploy the Augtrix Predator Cybermask across Blender, Unity, Unreal Engine 5, VTube Studio, Animaze, Cinema 4D & Maya.">
+    <meta property="og:url" content="https://augtrix.com/deployment.html">
+    <meta property="og:image" content="https://augtrix.com/Front_Cinematic_4K.webp">
+    <meta property="og:site_name" content="Augtrix">
+
+    <!-- Twitter/X Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Deployment Guide — Predator Cybermask in Blender, Unity, Unreal, VTube Studio">
+    <meta name="twitter:description" content="Step-by-step tutorial to deploy the Augtrix Predator Cybermask across Blender, Unity, Unreal Engine 5, VTube Studio, Animaze, Cinema 4D & Maya.">
+    <meta name="twitter:image" content="https://augtrix.com/Front_Cinematic_4K.webp">
+
+    <!-- Schema.org TechArticle Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "TechArticle",
+      "headline": "Deployment Guide — Predator Cybermask in Blender, Unity, Unreal Engine 5, VTube Studio, Animaze, Cinema 4D & Maya",
+      "description": "Step-by-step guide to deploy the Augtrix Predator Cybermask 3D asset across Blender, Unity, Unreal Engine 5, VTube Studio, Animaze, Cinema 4D and Maya.",
+      "author": {"@type": "Organization", "name": "Augtrix"},
+      "publisher": {"@type": "Organization", "name": "Augtrix", "logo": "https://augtrix.com/Augtrix_Logo_cropped.webp"},
+      "image": "https://augtrix.com/Front_Cinematic_4K.webp",
+      "url": "https://augtrix.com/deployment.html",
+      "about": {"@type": "Product", "name": "The Predator Cybermask — Digital Asset Pack"}
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --cyber-blue:#00d9ff; --dark-bg:#030303; --grid-color:rgba(0,217,255,0.08); }
+        *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
+        body{background-color:var(--dark-bg);color:#fff;min-height:100vh;background-image:linear-gradient(to right,var(--grid-color) 1px,transparent 1px),linear-gradient(to bottom,var(--grid-color) 1px,transparent 1px);background-size:45px 45px;overflow-x:hidden;}
+
+        /* HEADER */
+        header{position:fixed;top:0;left:0;width:100%;padding:10px 50px;display:flex;justify-content:space-between;align-items:center;z-index:100;background:linear-gradient(to bottom,rgba(3,3,3,0.98),rgba(3,3,3,0.85),transparent);border-bottom:1px solid rgba(0,217,255,0.1);}
+        .brand-container{display:flex;align-items:center;gap:20px;}
+        .brand-logo-box{display:flex;align-items:center;height:130px;padding-right:20px;border-right:1px solid rgba(0,217,255,0.18);}
+        .brand-logo-box img{height:100%;width:auto;display:block;object-fit:contain;filter:drop-shadow(0 0 12px rgba(0,217,255,0.4));}
+        .brand-text{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--cyber-blue);text-shadow:0 0 18px rgba(0,217,255,0.35);}
+        .header-right{display:flex;align-items:center;gap:14px;}
+        .site-nav{display:flex;align-items:center;gap:4px;}
+        .nav-link{color:#666;text-decoration:none;font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:8px 13px;border:1px solid transparent;transition:color 0.2s,border-color 0.2s,background 0.2s;}
+        .nav-link:hover{color:var(--cyber-blue);border-color:rgba(0,217,255,0.2);}
+        .nav-link.active{color:var(--cyber-blue);border-color:rgba(0,217,255,0.35);background:rgba(0,217,255,0.04);}
+        .lang-switcher{position:relative;}
+        .lang-trigger{display:flex;align-items:center;gap:10px;border:1px solid var(--cyber-blue);background:transparent;color:var(--cyber-blue);padding:10px 18px;font-size:0.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:inherit;transition:background 0.25s;}
+        .lang-trigger:hover{background:rgba(0,217,255,0.08);}
+        .lang-trigger svg{width:10px;height:10px;transition:transform 0.25s;}
+        .lang-switcher.open .lang-trigger svg{transform:rotate(180deg);}
+        .lang-dropdown{position:absolute;top:calc(100% + 10px);right:0;min-width:190px;background:#030303;border:1px solid var(--cyber-blue);box-shadow:0 0 35px rgba(0,217,255,0.2);display:none;flex-direction:column;z-index:200;}
+        .lang-switcher.open .lang-dropdown{display:flex;}
+        .lang-option{background:transparent;border:none;border-bottom:1px solid rgba(0,217,255,0.1);color:#ccc;text-align:left;padding:12px 18px;font-size:0.8rem;letter-spacing:1px;cursor:pointer;font-family:inherit;transition:background 0.2s,color 0.2s;}
+        .lang-option:last-child{border-bottom:none;}
+        .lang-option:hover,.lang-option.active{background:rgba(0,217,255,0.08);color:var(--cyber-blue);}
+        .nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:22px;height:16px;background:none;border:none;cursor:pointer;padding:0;}
+        .nav-hamburger span{display:block;width:100%;height:2px;background:var(--cyber-blue);transition:transform 0.28s,opacity 0.28s;}
+        .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+        .nav-hamburger.open span:nth-child(2){opacity:0;}
+        .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+        .mobile-nav-drawer{display:none;position:fixed;inset:0;background:rgba(3,3,3,0.97);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:110px 30px 40px;}
+        .mobile-nav-drawer.open{display:flex;}
+        .mobile-nav-drawer .nav-link{font-size:1rem;letter-spacing:4px;padding:14px 30px;width:100%;text-align:center;border:1px solid rgba(0,217,255,0.12);}
+        .lang-loading{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyber-blue),transparent);z-index:9999;display:none;animation:scanLine 1.2s linear infinite;}
+        @keyframes scanLine{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+        .lang-loading.active{display:block;}
+
+        /* HERO */
+        .deploy-hero{
+            position:relative;
+            padding:200px 50px 80px;
+            overflow:hidden;
+            border-bottom:1px solid rgba(0,217,255,0.06);
+        }
+        .deploy-hero::before{
+            content:'';position:absolute;inset:0;
+            background:radial-gradient(ellipse 80% 60% at 60% 50%, rgba(0,217,255,0.04) 0%, transparent 70%);
+            pointer-events:none;
+        }
+        /* Animated scan line */
+        .deploy-hero::after{
+            content:'';position:absolute;top:0;left:0;right:0;height:1px;
+            background:linear-gradient(90deg,transparent,var(--cyber-blue),transparent);
+            animation:heroScan 4s linear infinite;opacity:0.3;
+        }
+        @keyframes heroScan{0%{transform:translateY(0)}100%{transform:translateY(500px);opacity:0;}}
+
+        .hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;}
+        .hero-tag{font-size:0.65rem;letter-spacing:5px;text-transform:uppercase;color:var(--cyber-blue);opacity:0.7;margin-bottom:16px;font-family:monospace;}
+        .hero-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,4.5vw,3.5rem);font-weight:700;letter-spacing:-1.5px;text-transform:uppercase;line-height:1.05;margin-bottom:20px;}
+        .hero-title .dim{color:#222;}
+        .hero-title .glow{color:var(--cyber-blue);text-shadow:0 0 30px rgba(0,217,255,0.4);}
+        .hero-sub{color:#555;font-size:0.85rem;line-height:1.8;margin-bottom:30px;max-width:500px;}
+        .hero-badges{display:flex;gap:8px;flex-wrap:wrap;}
+        .hero-badge{font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;border:1px solid rgba(0,217,255,0.15);color:#555;padding:5px 12px;}
+        .hero-badge.live{border-color:var(--cyber-blue);color:var(--cyber-blue);}
+
+        /* Hero visual — animated mask preview */
+        .hero-visual{position:relative;display:flex;align-items:center;justify-content:center;}
+        .hero-img-wrap{
+            position:relative;width:100%;
+            border:1px solid rgba(0,217,255,0.12);
+            overflow:hidden;
+            background:linear-gradient(135deg,#010808,#000);
+        }
+        .hero-img-wrap img{width:100%;display:block;filter:brightness(0.9);}
+        .hero-img-overlay{
+            position:absolute;inset:0;
+            background:linear-gradient(to bottom,transparent 50%,rgba(0,217,255,0.04),transparent);
+            animation:imgSweep 3s ease-in-out infinite;
+            pointer-events:none;
+        }
+        @keyframes imgSweep{0%,100%{opacity:0.3}50%{opacity:1}}
+        .hero-corner{position:absolute;width:16px;height:16px;border-color:var(--cyber-blue);border-style:solid;opacity:0.6;}
+        .hero-corner.tl{top:-1px;left:-1px;border-width:2px 0 0 2px;}
+        .hero-corner.tr{top:-1px;right:-1px;border-width:2px 2px 0 0;}
+        .hero-corner.bl{bottom:-1px;left:-1px;border-width:0 0 2px 2px;}
+        .hero-corner.br{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
+        .hero-hud{position:absolute;bottom:12px;left:12px;font-family:monospace;font-size:0.6rem;color:var(--cyber-blue);opacity:0.5;letter-spacing:2px;}
+
+        /* MAIN */
+        main{max-width:1100px;margin:0 auto;padding:60px 50px 80px;}
+        .breadcrumb{display:inline-flex;align-items:center;gap:6px;color:#333;text-decoration:none;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:50px;transition:color 0.2s;}
+        .breadcrumb:hover{color:var(--cyber-blue);}
+
+        /* TABS */
+        .tabs-wrap{display:flex;gap:0;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-bottom:0;border-bottom:1px solid rgba(0,217,255,0.1);}
+        .tabs-wrap::-webkit-scrollbar{display:none;}
+        .tab-btn{
+            background:transparent;border:none;border-bottom:2px solid transparent;
+            color:#333;font-size:0.68rem;font-weight:700;letter-spacing:2px;
+            text-transform:uppercase;padding:14px 20px;cursor:pointer;
+            font-family:inherit;transition:all 0.2s;white-space:nowrap;flex-shrink:0;
+        }
+        .tab-btn:hover{color:#666;background:rgba(0,217,255,0.02);}
+        .tab-btn.active{color:var(--cyber-blue);border-bottom-color:var(--cyber-blue);background:rgba(0,217,255,0.03);}
+
+        /* PANEL */
+        .tab-panel{display:none;border:1px solid rgba(0,217,255,0.08);border-top:none;background:rgba(0,0,0,0.2);}
+        .tab-panel.active{display:block;}
+        .panel-grid{display:grid;grid-template-columns:1fr 400px;gap:0;min-height:500px;}
+
+        /* LEFT — steps */
+        .panel-left{padding:36px 40px;border-right:1px solid rgba(0,217,255,0.06);}
+        .panel-header{display:flex;align-items:center;gap:16px;margin-bottom:28px;flex-wrap:wrap;}
+        .panel-software{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;}
+        .panel-format{font-family:monospace;font-size:0.7rem;letter-spacing:2px;background:rgba(0,217,255,0.06);border:1px solid rgba(0,217,255,0.2);color:var(--cyber-blue);padding:4px 10px;}
+        .section-tag{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--cyber-blue);opacity:0.5;margin-bottom:12px;font-family:monospace;}
+
+        /* Steps */
+        .steps{display:flex;flex-direction:column;gap:1px;}
+        .step{display:grid;grid-template-columns:28px 1fr;gap:14px;padding:12px 14px;border:1px solid rgba(0,217,255,0.05);background:rgba(0,0,0,0.15);transition:border-color 0.2s,background 0.2s;}
+        .step:hover{border-color:rgba(0,217,255,0.15);background:rgba(0,217,255,0.01);}
+        .step-n{font-family:'Space Grotesk',sans-serif;font-size:0.7rem;font-weight:700;color:var(--cyber-blue);opacity:0.4;padding-top:2px;}
+        .step-t{font-size:0.82rem;color:#666;line-height:1.65;}
+        .step-t strong{color:#aaa;}
+        .step-t code{font-family:monospace;font-size:0.78rem;color:var(--cyber-blue);background:rgba(0,217,255,0.06);padding:1px 5px;border-radius:2px;}
+
+        /* RIGHT — video + notes */
+        .panel-right{display:flex;flex-direction:column;}
+
+        /* Video */
+        .video-wrap{position:relative;width:100%;padding-bottom:56.25%;background:#000;overflow:hidden;flex-shrink:0;}
+        .video-thumb{position:absolute;inset:0;cursor:pointer;overflow:hidden;}
+        .video-thumb img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s,filter 0.4s;filter:brightness(0.5) saturate(0.8);}
+        .video-thumb:hover img{transform:scale(1.03);filter:brightness(0.65) saturate(1);}
+        .video-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
+        /* Unreal-style scan lines */
+        .scanlines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.15) 2px,rgba(0,0,0,0.15) 4px);pointer-events:none;opacity:0.6;}
+        /* Corner brackets */
+        .vc{position:absolute;width:18px;height:18px;border-color:var(--cyber-blue);border-style:solid;opacity:0.7;}
+        .vc.tl{top:10px;left:10px;border-width:2px 0 0 2px;}
+        .vc.tr{top:10px;right:10px;border-width:2px 2px 0 0;}
+        .vc.bl{bottom:10px;left:10px;border-width:0 0 2px 2px;}
+        .vc.br{bottom:10px;right:10px;border-width:0 2px 2px 0;}
+        /* Play btn */
+        .play-ring{width:54px;height:54px;border-radius:50%;border:1.5px solid var(--cyber-blue);background:rgba(0,217,255,0.08);display:flex;align-items:center;justify-content:center;transition:all 0.3s;position:relative;z-index:1;}
+        .video-thumb:hover .play-ring{background:var(--cyber-blue);box-shadow:0 0 25px rgba(0,217,255,0.6);}
+        .play-ring svg{width:18px;height:18px;fill:var(--cyber-blue);margin-left:3px;transition:fill 0.3s;}
+        .video-thumb:hover .play-ring svg{fill:#000;}
+        .video-title{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:#444;text-align:center;position:relative;z-index:1;padding:0 20px;}
+        .video-status{font-size:0.58rem;letter-spacing:2px;text-transform:uppercase;position:relative;z-index:1;}
+        .video-status.soon{color:#252525;border:1px solid #1a1a1a;padding:3px 10px;}
+        .video-status.live{color:var(--cyber-blue);border:1px solid rgba(0,217,255,0.3);padding:3px 10px;}
+        /* HUD overlay on video */
+        .video-hud{position:absolute;top:10px;left:10px;font-family:monospace;font-size:0.55rem;color:var(--cyber-blue);opacity:0.4;letter-spacing:2px;z-index:2;}
+        .video-iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+
+        /* Notes area */
+        .panel-notes{flex:1;padding:20px 22px;border-top:1px solid rgba(0,217,255,0.05);display:flex;flex-direction:column;gap:10px;}
+        .note-row{display:flex;gap:10px;align-items:flex-start;}
+        .note-icon{color:var(--cyber-blue);opacity:0.4;font-size:0.75rem;flex-shrink:0;margin-top:2px;}
+        .note-text{font-size:0.78rem;color:#444;line-height:1.6;}
+        .note-text strong{color:#666;}
+        .note-text a{color:var(--cyber-blue);text-decoration:none;}
+        .note-text a:hover{text-decoration:underline;}
+
+        /* CTA */
+        .cta-bar{margin-top:50px;padding:28px 36px;border:1px solid rgba(0,217,255,0.12);background:linear-gradient(135deg,rgba(0,217,255,0.02),transparent);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+        .cta-left{}
+        .cta-eyebrow{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:#333;margin-bottom:6px;font-family:monospace;}
+        .cta-headline{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
+        .cta-headline span{color:var(--cyber-blue);}
+        .btn-cta{border:1px solid var(--cyber-blue);background:transparent;color:#fff;padding:13px 28px;font-size:0.78rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;display:inline-block;transition:all 0.3s;white-space:nowrap;}
+        .btn-cta:hover{background:var(--cyber-blue);color:#000;box-shadow:0 0 22px rgba(0,217,255,0.5);}
+
+        /* FOOTER */
+        footer{border-top:1px solid rgba(0,217,255,0.08);padding:40px 50px;display:flex;justify-content:space-between;align-items:center;background:#010101;margin-top:80px;}
+        .footer-credits{font-size:0.8rem;color:#555;letter-spacing:1px;}
+        .footer-links a{color:#777;text-decoration:none;font-size:0.8rem;margin-left:20px;transition:color 0.3s;}
+        .footer-links a:hover{color:var(--cyber-blue);}
+        .social-bar{display:flex;justify-content:center;align-items:center;gap:22px;padding:24px 50px;border-top:1px solid rgba(0,217,255,0.06);background:#010101;}
+        .social-icon{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid rgba(0,217,255,0.25);border-radius:50%;color:#888;cursor:pointer;transition:all 0.3s;text-decoration:none;}
+        .social-icon svg{width:16px;height:16px;fill:currentColor;}
+        .social-icon:hover{color:var(--cyber-blue);border-color:var(--cyber-blue);box-shadow:0 0 14px rgba(0,217,255,0.35);transform:translateY(-2px);}
+
+        /* MOBILE */
+        @media(max-width:1024px){
+            header{position:relative;padding:10px 20px;}
+            .site-nav{display:none;}
+            .nav-hamburger{display:flex;}
+            .brand-logo-box{height:80px;padding-right:14px;}
+            .deploy-hero{padding:130px 20px 60px;}
+            .hero-inner{grid-template-columns:1fr;gap:40px;}
+            .hero-visual{display:none;}
+            main{padding:40px 20px 60px;}
+            .panel-grid{grid-template-columns:1fr;}
+            .panel-left{padding:24px 16px;border-right:none;border-bottom:1px solid rgba(0,217,255,0.06);}
+            .panel-right{border-top:none;}
+            footer{flex-direction:column;gap:20px;text-align:center;padding:30px 20px;margin-top:40px;}
+            .footer-links a{margin:0 10px;}
+            .social-bar{gap:14px;padding:20px;flex-wrap:wrap;}
+            .cta-bar{flex-direction:column;align-items:flex-start;}
+        }
+        @media(max-width:480px){
+            header{padding:8px 16px;}
+            .brand-logo-box{height:64px;}
+            .brand-text{font-size:1.1rem;letter-spacing:3px;}
+            .step{grid-template-columns:22px 1fr;gap:10px;}
+            .tab-btn{padding:12px 14px;font-size:0.6rem;}
+        }
+    </style>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E0Y4MYPDZ4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-E0Y4MYPDZ4');
+    </script>
+</head>
+<body>
+
+<div class="lang-loading" id="langLoading"></div>
+
+<div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="shop.html" class="nav-link active">Shop</a>
+    <a href="custom-avatars.html" class="nav-link">Custom Avatars</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+    <a href="support.html" class="nav-link">Support</a>
+</div>
+
+<header>
+    <div class="brand-container">
+        <div class="brand-logo-box">
+            <img src="Augtrix_Logo_cropped.webp" alt="AUGTRIX logo" loading="eager" decoding="async">
+        </div>
+        <div class="brand-text">Augtrix</div>
+    </div>
+    <div class="header-right">
+        <nav class="site-nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="shop.html" class="nav-link active">Shop</a>
+            <a href="custom-avatars.html" class="nav-link">Custom Avatars</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="blog.html" class="nav-link">Blog</a>
+            <a href="support.html" class="nav-link">Support</a>
+        </nav>
+        <div class="lang-switcher" id="langSwitcher">
+            <button class="lang-trigger" id="langTrigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+                <span id="langCurrent">EN</span>
+                <svg viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+            <div class="lang-dropdown" id="langDropdown" role="listbox">
+                <button class="lang-option active" data-lang="en" data-label="EN" type="button">English</button>
+                <button class="lang-option" data-lang="zh-CN" data-label="ZH" type="button">中文 (简体)</button>
+                <button class="lang-option" data-lang="fr" data-label="FR" type="button">Français</button>
+                <button class="lang-option" data-lang="de" data-label="DE" type="button">Deutsch</button>
+                <button class="lang-option" data-lang="ja" data-label="JA" type="button">日本語</button>
+                <button class="lang-option" data-lang="ko" data-label="KO" type="button">한국어</button>
+                <button class="lang-option" data-lang="pt" data-label="PT" type="button">Português</button>
+                <button class="lang-option" data-lang="es" data-label="ES" type="button">Español</button>
+            </div>
+        </div>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<!-- HERO -->
+<div class="deploy-hero">
+    <div class="hero-inner">
+        <div>
+            <div class="hero-tag">// Deployment Guide · Drop 001 · Predator Cybermask</div>
+            <h1 class="hero-title">
+                <span class="dim">Deploy Your</span><br>
+                <span class="glow">Digital Identity</span><br>
+                <span class="dim">Anywhere.</span>
+            </h1>
+            <p class="hero-sub">Full step-by-step deployment for every major creative platform. Video tutorials added as they go live. Written guides available now.</p>
+            <div class="hero-badges">
+                <span class="hero-badge live">Blender</span>
+                <span class="hero-badge live">Unity</span>
+                <span class="hero-badge live">Unreal Engine 5</span>
+                <span class="hero-badge live">VTube Studio</span>
+                <span class="hero-badge live">Animaze</span>
+                <span class="hero-badge live">Lens Studio</span>
+                <span class="hero-badge">Cinema 4D</span>
+                <span class="hero-badge">Maya</span>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-img-wrap">
+                <img src="Wireframe_Cinematic.webp" alt="Augtrix Predator Cybermask wireframe" loading="lazy">
+                <div class="hero-img-overlay"></div>
+                <div class="hero-corner tl"></div>
+                <div class="hero-corner tr"></div>
+                <div class="hero-corner bl"></div>
+                <div class="hero-corner br"></div>
+                <div class="hero-hud">AUGTRIX_PREDATOR.GLB // RENDER ACTIVE</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main>
+    <a href="predator.html" class="breadcrumb">← Back to Predator Cybermask</a>
+
+    <!-- TABS -->
+    <div class="tabs-wrap" id="tabsWrap">
+        <button class="tab-btn active" data-tab="blender">Blender</button>
+        <button class="tab-btn" data-tab="unity">Unity</button>
+        <button class="tab-btn" data-tab="unreal">Unreal Engine 5</button>
+        <button class="tab-btn" data-tab="vtube">VTube Studio</button>
+        <button class="tab-btn" data-tab="animaze">Animaze</button>
+        <button class="tab-btn" data-tab="lens">Lens Studio</button>
+        <button class="tab-btn" data-tab="c4d">Cinema 4D</button>
+        <button class="tab-btn" data-tab="maya">Maya</button>
+    </div>
+
+    <!-- ══ BLENDER ══ -->
+    <div class="tab-panel active" id="tab-blender">
+        <div class="panel-grid">
+            <div class="panel-left">
+                <div class="panel-header">
+                    <div class="panel-software">Blender</div>
+                    <div class="panel-format">Augtrix_Predator.glb</div>
+                </div>
+                <div class="section-tag">// Step-by-Step</div>
+                <div class="steps">
+                    <div class="step"><div class="step-n">01</div><div class="step-t"><strong>File → Import → glTF 2.0 (.glb/.gltf)</strong></div></div>
+                    <div class="step"><div class="step-n">02</div><div class="step-t">Select <code>Augtrix_Predator.glb</code> → click Import. All PBR materials and 8 texture maps load automatically — no manual linking needed.</div></div>
+                    <div class="step"><div class="step-n">03</div><div class="step-t">In the <strong>Outliner</strong> you'll see <code>Mask_Body</code>, <code>Eye_Left</code>, <code>Eye_Right</code>. Toggle eye visibility with the eye icon.</div></div>
+                    <div class="step"><div class="step-n">04</div><div class="step-t">Open <strong>Shader Editor</strong> → select Mask_Body → verify Emission node is connected. Set Emission Strength to <code>2.0–5.0</code> for fire glow.</div></div>
+                    <div class="step"><div class="step-n">05</div><div class="step-t">Eye materials → Emission Color <code>(1.0, 0.25, 0.0)</code> → Strength <code>3–10</code> for glowing red predator eyes.</div></div>
+                    <div class="step"><div class="step-n">06</div><div class="step-t">Add an <strong>HDRI environment</strong> (World Properties → Environment Texture) for realistic reflections.</div></div>
+                    <div class="step"><div class="step-n">07</div><div class="step-t">Render with <strong>Cycles</strong> for photorealism or <strong>EEVEE Next</strong> for real-time. Both fully supported.</div></div>
+                </div>
+            </div>
+            <div class="panel-right">
+                <div class="video-wrap">
+                    <div class="video-thumb" data-vid="YOUR_BLENDER_VIDEO_ID">
+                        <img src="Wireframe_Cinematic.webp" alt="Blender tutorial">
+                        <div class="scanlines"></div>
+                        <div class="video-hud">BLENDER · GLB · PBR</div>
+                        <div class="vc tl"></div><div class="vc tr"></div><div class="vc bl"></div><div class="vc br"></div>
+                        <div class="video-overlay">
+                            <div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+                            <div class="video-title">Augtrix Predator in Blender — Full Setup</div>
+                            <div class="video-status soon">// Tutorial Coming Soon</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-notes">
+                    <div class="note-row"><div class="note-icon">◈</div><div class="note-text"><strong>GLB only</strong> in Blender — all textures embedded, zero setup.</div></div>
+                    <div class="note-row"><div class="note-icon">◈</div><div class="note-text">The wireframe render shown across this site was produced directly from Blender using this file.</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ UNITY ══ -->
+    <div class="tab-panel" id="tab-unity">
+        <div class="panel-grid">
+            <div class="panel-left">
+                <div class="panel-header">
+                    <div class="panel-software">Unity</div>
+                    <div class="panel-format">Augtrix_Predator.fbx</div>
+                </div>
+                <div class="section-tag">// Step-by-Step</div>
+                <div class="steps">
+                    <div class="step"><div class="step-n">01</div><div class="step-t">Drag <code>Augtrix_Predator.fbx</code> into your <strong>Assets</strong> folder in the Project window.</div></div>
+                    <div class="step"><div class="step-n">02</div><div class="step-t">Drag the model from Assets into your <strong>Scene</strong>.</div></div>
+                    <div class="step"><div class="step-n">03</div><div class="step-t">If too shiny: select material → <strong>Smoothness = 0.5</strong> in Inspector.</div></div>
+                    <div class="step"><div class="step-n">04</div><div class="step-t">For URP/HDRP: create a <strong>Lit Material</strong> → connect <code>BaseColor_FINAL</code> → Base Map, <code>Metallic</code> → Metallic, <code>Roughness</code> → Smoothness (invert), <code>Normal</code> → Normal Map.</div></div>
+                    <div class="step"><div class="step-n">05</div><div class="step-t">Eye glow: select Eye material → enable <strong>Emission</strong> → color <code>(255, 64, 0)</code> → Intensity <code>3.0</code>.</div></div>
+                    <div class="step"><div class="step-n">06</div><div class="step-t">Model is in <strong>metres</strong>. Default scale is 1:1 — adjust to your scene.</div></div>
+                </div>
+            </div>
+            <div class="panel-right">
+                <div class="video-wrap">
+                    <div class="video-thumb" data-vid="YOUR_UNITY_VIDEO_ID">
+                        <img src="Front_Cinematic_4K.webp" alt="Unity tutorial">
+                        <div class="scanlines"></div>
+                        <div class="video-hud">UNITY · FBX · URP/HDRP</div>
+                        <div class="vc tl"></div><div class="vc tr"></div><div class="vc bl"></div><div class="vc br"></div>
+                        <div class="video-overlay">
+                            <div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+                            <div class="video-title">Augtrix Cybermask in Unity — Import & Material Setup</div>
+                            <div class="video-status soon">// Tutorial Coming Soon</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-notes">
+                    <div class="note-row"><div class="note-icon">◈</div><div class="note-text">URP and HDRP give the best PBR result. Built-in pipeline also works.</div></div>
+                    <div class="note-row"><div class="note-icon">◈</div><div class="note-text"><strong>Roughness note:</strong> Unity inverts roughness for smoothness — use the Roughness map but invert the channel.</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ UNREAL ══ -->
+    <div class="tab-panel" id="tab-unreal">
+        <div class="panel-grid">
+            <div class="panel-left">
+                <div class="panel-header">
+                    <div class="panel-software">Unreal Engine 5</div>
+                    <div class="panel-format">Augtrix_Predator.fbx</div>
+                </div>
+                <div class="section-tag">// Step-by-Step</div>
+                <div class="steps">
+                    <div class="step"><div class="step-n">01</div><div class="step-t"><strong>Content Browser → Import</strong> → select <code>Augtrix_Predator.fbx</code> → Import All.</div></div>
+                    <div class="step"><div class="step-n">02</div><div class="step-t">FBX Import Options: enable <strong>Import Materials</strong> and <strong>Import Textures</strong>.</div></div>
+                    <div class="step"><div class="step-n">03</div><div class="step-t">Open <strong>Material Editor</strong> → connect: <code>BaseColor_FINAL</code> → Base Color | <code>Metallic</code> → Metallic | <code>Roughness</code> → Roughness | <code>Normal</code> → Normal.</div></div>
+                    <div class="step"><div class="step-n">04</div><div class="step-t">Emission: connect <code>Emission.png</code> → <strong>Emissive Color</strong> → multiply scalar by <code>5.0</code>.</div></div>
+                    <div class="step"><div class="step-n">05</div><div class="step-t">Enable <strong>Lumen</strong> (UE5 default) — eye emission will cast real-time light on surrounding surfaces automatically.</div></div>
+                    <div class="step"><div class="step-n">06</div><div class="step-t">In Post Process Volume: set <strong>Emissive Boost 2.0–5.0</strong> for cinematic eye glow bloom.</div></div>
+                    <div class="step"><div class="step-n">07</div><div class="step-t">Place Static Mesh in your level. Model is in metres.</div></div>
+                </div>
+            </div>
+            <div class="panel-right">
+                <div class="video-wrap">
+                    <div class="video-thumb" data-vid="YOUR_UE5_VIDEO_ID">
+                        <img src="Side_Cinematic_4K.webp" alt="Unreal Engine 5 tutorial">
+                        <div class="scanlines"></div>
+                        <div class="video-hud">UE5 · FBX · LUMEN</div>
+                        <div class="vc tl"></div><div class="vc tr"></div><div class="vc bl"></div><div class="vc br"></div>
+                        <div class="video-overlay">
+                            <div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+                            <div class="video-title">Predator Cybermask in Unreal Engine 5 with Lumen</div>
+                            <div class="video-status soon">// Tutorial Coming Soon</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-notes">
+                    <div class="note-row"><div class="note-icon">◈</div><div class="note-text"><strong>Lumen tip:</strong> with Lumen GI active, the red eye emission casts dynamic light — no baking needed.</div></div>
+                    <div class="note-row"><div class="note-icon">◈</div><div class="note-text">Nanite is not needed for this asset — it's already optimised for real-time use.</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ VTUBE ══ -->
+    <div class="tab-panel" id="tab-vtube">
+        <div class="panel-grid">
+            <div class="panel-left">
+                <div class="panel-header">
+                    <div class="panel-software">VTube Studio</div>
+                    <div class="panel-format">Augtrix_Predator.glb</div>
+                </div>
+                <div class="section-tag">// Step-by-Step</div>
+                <div class="steps">
+                    <div class="step"><div class="step-n">01</div><div class="step-t">Open VTube Studio → <strong>Items / Props</strong> panel → <strong>Import 3D Item</strong>.</div></div>
+                    <div class="step"><div class="step-n">02</div><div class="step-t">Select <code>Augtrix_Predator.glb</code> — loads with full PBR materials.</div></div>
+                    <div class="step"><div class="step-n">03</div><div class="step-t">Use transform handles to <strong>scale and position</strong> over your face tracking anchor.</div></div>
+                    <div class="step"><div class="step-n">04</div><div class="step-t">Attach to the <strong>Head bone</strong> — mask follows head movement in real time.</div></div>
+                    <div class="step"><div class="step-n">05</div><div class="step-t">If eye glow is missing: enable <strong>emissive materials</strong> in VTube Studio graphics settings.</div></div>
+                    <div class="step"><div class="step-n">06</div><div class="step-t">Output via <strong>OBS Virtual Camera</strong>. Use a black background for maximum visual impact.</div></div>
+                </div>
+            </div>
+            <div class="panel-right">
+                <div class="video-wrap">
+                    <div class="video-thumb" data-vid="YOUR_VTUBE_VIDEO_ID">
+                        <img src="Front_Cinematic_4K.webp" alt="VTube Studio tutorial">
+                        <div class="scanlines"></div>
+                        <div class="video-hud">VTUBE STUDIO · GLB · LIVE</div>
+                        <div class="vc tl"></div><div class="vc tr"></div><div class="vc bl"></div><div class="vc br"></div>
+                        <div class="video-overlay">
+                            <div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+                            <div class="video-title">Wear the Augtrix Cybermask live in VTube Studio</div>
+                            <div class="video-status soon">// Tutorial Coming Soon</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-notes">
+                    <div class="note-row"><div class="note-icon">◈</div><div class="note-text"><strong>Streamer tip:</strong> pair with a dark scene in OBS and add a subtle cyan colour grade — makes the teal accents pop on stream.</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ ANIMAZE ══ -->
+    <div class="tab-panel" id="tab-animaze">
+        <div class="panel-grid">
+            <div class="panel-left">
+                <div class="panel-header">
+                    <div class="panel-software">Animaze</div>
+                    <div class="panel-format">Augtrix_Predator.glb</div>
+                </div>
+                <div class="section-tag">// Step-by-Step</div>
+                <div class="steps">
+                    <div class="step"><div class="step-n">01</div><div class="step-t">Open Animaze → <strong>Avatar Library → Import Custom Avatar</strong>.</div></div>
+                    <div class="step"><div class="step-n">02</div><div class="step-t">Select <code>Augtrix_Predator.glb</code> — Animaze reads GLB natively with full PBR.</div></div>
+                    <div class="step"><div class="step-n">03</div><div class="step-t">In the <strong>face rig editor</strong>, map tracking anchors to your face landmarks.</div></div>
+                    <div class="step"><div class="step-n">04</div><div class="step-t">Adjust <strong>scale and position</strong> to align the mask with your face tracking zone.</div></div>
+                    <div class="step"><div class="step-n">05</div><div class="step-t">Enable <strong>Emission</strong> in material settings → intensity <code>3.0+</code> for glowing eyes.</div></div>
+                    <div class="step"><div class="step-n">06</div><div class="step-t">Use as full head replacement or face overlay — output via <strong>Animaze Virtual Cam</strong> into OBS or Streamlabs.</div></div>
+                </div>
+            </div>
+            <div class="panel-right">
+                <div class="video-wrap">
+                    <div class="video-thumb" data-vid="YOUR_ANIMAZE_VIDEO_ID">
+                        <img src="Side2_Cinematic_4K.webp" alt="Animaze tutorial">
+                        <div class="scanlines"></div>
+                        <div class="video-hud">ANIMAZE · GLB · FACEWARE</div>
+                        <div class="vc tl"></div><div class="vc tr"></div><div class="vc bl"></div><div class="vc br"></div>
+                        <div class="video-overlay">
+                            <div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+                            <div class="video-title">Augtrix Cybermask live in Animaze — VTuber setup</div>
+                            <div class="video-status soon">// Tutorial Coming Soon</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-notes">
+                    <div class="note-row"><div class="note-icon">◈</div><div class="note-text"><strong>Best tracking:</strong> use iPhone with Face ID for sub-millimetre accuracy with the Cybermask in Animaze.</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ LENS STUDIO ══ -->
+    <div class="tab-panel" id="tab-lens">
+        <div class="panel-grid">
+            <div class="panel-left">
+                <div class="panel-header">
+                    <div class="panel-software">Snapchat Lens Studio</div>
+                    <div class="panel-format">Augtrix_Predator.obj + Textures</div>
+                </div>
+                <div class="section-tag">// Step-by-Step</div>
+                <div class="steps">
+                    <div class="step"><div class="step-n">01</div><div class="step-t">Lens Studio → <strong>New Project → Face Mask template</strong>.</div></div>
+                    <div class="step"><div class="step-n">02</div><div class="step-t">Resources → <strong>Add → Import Files</strong> → select <code>Augtrix_Predator.obj</code>. MTL loads automatically.</div></div>
+                    <div class="step"><div class="step-n">03</div><div class="step-t">Create a <strong>PBR Material</strong>: Inspector → Material → PBR.</div></div>
+                    <div class="step"><div class="step-n">04</div><div class="step-t">Diffuse → <code>BaseColor_FINAL.png</code> | Metallic → <code>Metallic.png</code> | Roughness → <code>Roughness.png</code> | Normal → <code>Normal.png</code>.</div></div>
+                    <div class="step"><div class="step-n">05</div><div class="step-t">Emissive → <code>Emission.png</code> → Emissive Intensity <code>5.0</code>.</div></div>
+                    <div class="step"><div class="step-n">06</div><div class="step-t">Attach mesh to <strong>[Head] binding</strong> → preview → publish to Snapchat.</div></div>
+                </div>
+            </div>
+            <div class="panel-right">
+                <div class="video-wrap">
+                    <div class="video-thumb" data-vid="YOUR_LENS_VIDEO_ID">
+                        <img src="Wireframe_Cinematic.webp" alt="Lens Studio tutorial">
+                        <div class="scanlines"></div>
+                        <div class="video-hud">LENS STUDIO · OBJ · AR</div>
+                        <div class="vc tl"></div><div class="vc tr"></div><div class="vc bl"></div><div class="vc br"></div>
+                        <div class="video-overlay">
+                            <div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+                            <div class="video-title">Build a Snapchat AR mask lens with Augtrix assets</div>
+                            <div class="video-status soon">// Tutorial Coming Soon</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-notes">
+                    <div class="note-row"><div class="note-icon">◈</div><div class="note-text"><strong>Already built:</strong> a live try-on Lens is available free on <a href="predator.html">the product page</a> — built from these exact assets.</div></div>
+                    <div class="note-row"><div class="note-icon">◈</div><div class="note-text">Keep Textures folder in the same directory as OBJ — Lens Studio needs co-located files.</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ C4D ══ -->
+    <div class="tab-panel" id="tab-c4d">
+        <div class="panel-grid">
+            <div class="panel-left">
+                <div class="panel-header">
+                    <div class="panel-software">Cinema 4D</div>
+                    <div class="panel-format">Augtrix_Predator.fbx or .obj</div>
+                </div>
+                <div class="section-tag">// Step-by-Step</div>
+                <div class="steps">
+                    <div class="step"><div class="step-n">01</div><div class="step-t"><strong>File → Merge</strong> → select FBX or OBJ.</div></div>
+                    <div class="step"><div class="step-n">02</div><div class="step-t"><strong>Material Manager</strong> → open auto-created material.</div></div>
+                    <div class="step"><div class="step-n">03</div><div class="step-t">Color channel → <code>BaseColor_FINAL.png</code>.</div></div>
+                    <div class="step"><div class="step-n">04</div><div class="step-t">Reflectance → GGX layer → <code>Roughness.png</code> → Roughness | <code>Metallic.png</code> → Metallic.</div></div>
+                    <div class="step"><div class="step-n">05</div><div class="step-t">Normal channel → <code>Normal.png</code>.</div></div>
+                    <div class="step"><div class="step-n">06</div><div class="step-t">Luminance channel → <code>Emission.png</code> → Brightness <code>500%</code>.</div></div>
+                    <div class="step"><div class="step-n">07</div><div class="step-t">For <strong>Redshift</strong>: use RS Standard Material — connects to all PBR inputs directly.</div></div>
+                </div>
+            </div>
+            <div class="panel-right">
+                <div class="video-wrap">
+                    <div class="video-thumb" data-vid="YOUR_C4D_VIDEO_ID">
+                        <img src="Back_Cinematic_4K.webp" alt="Cinema 4D tutorial">
+                        <div class="scanlines"></div>
+                        <div class="video-hud">CINEMA 4D · FBX · REDSHIFT</div>
+                        <div class="vc tl"></div><div class="vc tr"></div><div class="vc bl"></div><div class="vc br"></div>
+                        <div class="video-overlay">
+                            <div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+                            <div class="video-title">Augtrix Cybermask in Cinema 4D with Redshift</div>
+                            <div class="video-status soon">// Tutorial Coming Soon</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-notes">
+                    <div class="note-row"><div class="note-icon">◈</div><div class="note-text">Redshift produces closest match to the original product renders.</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ MAYA ══ -->
+    <div class="tab-panel" id="tab-maya">
+        <div class="panel-grid">
+            <div class="panel-left">
+                <div class="panel-header">
+                    <div class="panel-software">Autodesk Maya</div>
+                    <div class="panel-format">Augtrix_Predator.fbx</div>
+                </div>
+                <div class="section-tag">// Step-by-Step</div>
+                <div class="steps">
+                    <div class="step"><div class="step-n">01</div><div class="step-t"><strong>File → Import</strong> → select FBX → All Files.</div></div>
+                    <div class="step"><div class="step-n">02</div><div class="step-t">Open <strong>Hypershade</strong> → create <code>aiStandardSurface</code> (Arnold).</div></div>
+                    <div class="step"><div class="step-n">03</div><div class="step-t"><code>BaseColor_FINAL.png</code> → Base Color.</div></div>
+                    <div class="step"><div class="step-n">04</div><div class="step-t"><code>Metallic.png</code> → Metallic | <code>Roughness.png</code> → Specular Roughness.</div></div>
+                    <div class="step"><div class="step-n">05</div><div class="step-t"><code>Normal.png</code> → Normal Camera via <code>aiNormalMap</code> node.</div></div>
+                    <div class="step"><div class="step-n">06</div><div class="step-t"><code>Emission.png</code> → Emission Color → Weight <code>1.0</code>.</div></div>
+                    <div class="step"><div class="step-n">07</div><div class="step-t">Eye material: Emission Color <code>(1.0, 0.25, 0.0)</code> → Weight <code>1.0</code> → Exposure <code>3.0</code>.</div></div>
+                </div>
+            </div>
+            <div class="panel-right">
+                <div class="video-wrap">
+                    <div class="video-thumb" data-vid="YOUR_MAYA_VIDEO_ID">
+                        <img src="Side_Cinematic_4K.webp" alt="Maya tutorial">
+                        <div class="scanlines"></div>
+                        <div class="video-hud">MAYA · FBX · ARNOLD</div>
+                        <div class="vc tl"></div><div class="vc tr"></div><div class="vc bl"></div><div class="vc br"></div>
+                        <div class="video-overlay">
+                            <div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+                            <div class="video-title">Augtrix 3D mask in Autodesk Maya with Arnold</div>
+                            <div class="video-status soon">// Tutorial Coming Soon</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-notes">
+                    <div class="note-row"><div class="note-icon">◈</div><div class="note-text"><strong>Arnold tip:</strong> set camera EV 10–12 so glowing eyes bloom without overexposing the mask body.</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-bar">
+        <div class="cta-left">
+            <div class="cta-eyebrow">// Don't have the pack yet?</div>
+            <div class="cta-headline">All formats. All textures. <span>One download.</span></div>
+        </div>
+        <a href="YOUR_GUMROAD_LINK_HERE" target="_blank" rel="noopener" class="btn-cta">Acquire Asset Pack — $29.99</a>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-credits">© 2026 AUGTRIX. All Rights Reserved. SYSTEM ACTIVE.</div>
+    <div class="footer-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-service.html">Terms of Service</a>
+        <a href="refund-policy.html">Refund Policy</a>
+    </div>
+</footer>
+<div class="social-bar">
+    <a class="social-icon" href="https://www.snapchat.com/add/augtrixlabs?share_id=Fz3Td2U_nJk&locale=en-US" target="_blank" rel="noopener" aria-label="Snapchat"><svg viewBox="0 0 24 24"><path d="M12.166 1.999c2.241 0 4.13 1.55 4.617 3.638.085.36.114.736.114 1.114v1.95c.371.183.747.36 1.13.518.279.115.59.07.84-.115.13-.097.295-.143.46-.097.207.058.357.252.367.477.012.27-.16.51-.39.629-.385.196-.78.37-1.18.527-.13.05-.21.176-.197.317.04.43.13.857.27 1.27.42 1.25 1.18 2.34 2.2 3.16.13.104.21.27.21.44 0 .27-.21.49-.47.51-.42.04-.84.13-1.23.27a.65.65 0 0 0-.42.55c-.03.27-.06.54-.13.8-.06.24-.27.4-.51.4-.06 0-.13-.01-.19-.03-.5-.16-1.02-.24-1.55-.24-.31 0-.62.03-.92.09-.5.1-.93.39-1.21.81-.74 1.1-1.97 1.76-3.31 1.76-1.34 0-2.57-.66-3.31-1.76-.28-.42-.71-.71-1.21-.81-.3-.06-.61-.09-.92-.09-.53 0-1.05.08-1.55.24-.06.02-.13.03-.19.03-.24 0-.45-.16-.51-.4-.07-.26-.1-.53-.13-.8a.65.65 0 0 0-.42-.55c-.39-.14-.81-.23-1.23-.27a.51.51 0 0 1-.47-.51c0-.17.08-.336.21-.44 1.02-.82 1.78-1.91 2.2-3.16.14-.413.23-.84.27-1.27.013-.141-.067-.267-.197-.317-.4-.157-.795-.331-1.18-.527-.23-.119-.402-.36-.39-.629.01-.225.16-.42.367-.477.165-.046.33 0 .46.097.25.185.561.23.84.115.383-.158.759-.335 1.13-.518V6.75c0-.378.029-.755.114-1.114.487-2.088 2.376-3.638 4.617-3.638z"/></svg></a>
+    <a class="social-icon social-soon" href="javascript:void(0)" aria-label="Pinterest"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.219-.937 1.406-5.957 1.406-5.957s-.359-.719-.359-1.781c0-1.663.967-2.911 2.171-2.911 1.023 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.131 0 3.768-2.247 3.768-5.487 0-2.861-2.056-4.86-4.992-4.86-3.4 0-5.396 2.551-5.396 5.188 0 1.027.395 2.127.889 2.726.097.118.112.222.083.343-.09.375-.293 1.199-.332 1.363-.053.225-.172.271-.402.165-1.495-.69-2.43-2.878-2.43-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.747-1.378 0 0-.602 2.291-.748 2.85-.271 1.041-1.002 2.349-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
+    <a class="social-icon social-soon" href="javascript:void(0)" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    <a class="social-icon social-soon" href="javascript:void(0)" aria-label="Discord"><svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+    <a class="social-icon social-soon" href="javascript:void(0)" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a class="social-icon social-soon" href="javascript:void(0)" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+</div>
+
+<script>
+window.PAGE_STRINGS = {
+    'footer-credits': '© 2026 AUGTRIX. All Rights Reserved. SYSTEM ACTIVE.',
+    'footer-privacy': 'Privacy Policy',
+    'footer-tos': 'Terms of Service',
+    'footer-refund': 'Refund Policy'
+};
+</script>
+<script src="lang.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    /* TABS */
+    var tabBtns = document.querySelectorAll('.tab-btn');
+    var tabPanels = document.querySelectorAll('.tab-panel');
+    tabBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            tabBtns.forEach(function (b) { b.classList.remove('active'); });
+            tabPanels.forEach(function (p) { p.classList.remove('active'); });
+            btn.classList.add('active');
+            var panel = document.getElementById('tab-' + btn.getAttribute('data-tab'));
+            if (panel) panel.classList.add('active');
+        });
+    });
+
+    /* VIDEO — lazy YouTube embed on click */
+    document.querySelectorAll('.video-thumb').forEach(function (thumb) {
+        thumb.addEventListener('click', function () {
+            var vid = thumb.getAttribute('data-vid');
+            if (!vid || vid.indexOf('YOUR_') === 0) return;
+            var wrap = thumb.parentElement;
+            var iframe = document.createElement('iframe');
+            iframe.className = 'video-iframe';
+            iframe.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1&rel=0';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            wrap.innerHTML = '';
+            wrap.appendChild(iframe);
+        });
+    });
+
+});
+</script>
+</body>
+</html>
