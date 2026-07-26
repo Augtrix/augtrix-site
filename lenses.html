@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Augtrix — Lens Catalog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050505;
+    --bg-raised:#0d0d0d;
+    --line:#1c1c1c;
+    --text:#f2f2f2;
+    --text-dim:#8a8a8a;
+    --text-faint:#4a4a4a;
+    --accent:#00d9ff;
+    --amber:#ffb000;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{background:var(--bg);}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  .mono{font-family:'JetBrains Mono', monospace;}
+
+  /* Header */
+  header{
+    padding:64px 24px 40px;
+    max-width:920px;
+    margin:0 auto;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    color:var(--accent);
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:6px;height:6px;
+    background:var(--accent);
+    border-radius:50%;
+    box-shadow:0 0 8px var(--accent);
+  }
+  h1{
+    font-size:clamp(32px, 6vw, 56px);
+    font-weight:600;
+    letter-spacing:-0.02em;
+    line-height:1.05;
+    margin-bottom:16px;
+  }
+  header p{
+    color:var(--text-dim);
+    font-size:16px;
+    max-width:520px;
+    line-height:1.55;
+  }
+  .count-line{
+    margin-top:28px;
+    display:flex;
+    gap:28px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--text-faint);
+  }
+  .count-line b{color:var(--text); font-weight:500;}
+
+  /* Platform groups */
+  main{max-width:920px; margin:0 auto; padding:0 24px 100px;}
+  .group{margin-top:56px;}
+  .group-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:4px;
+  }
+  .group-title{
+    font-size:13px;
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+  }
+  .group-sub{
+    font-size:12px;
+    font-family:'JetBrains Mono', monospace;
+    color:var(--text-faint);
+  }
+
+  /* Lens row */
+  .lens{
+    display:grid;
+    grid-template-columns:72px 56px 1fr auto auto;
+    align-items:center;
+    gap:20px;
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+    text-decoration:none;
+    color:inherit;
+    transition:background 0.15s ease;
+  }
+  .icon{
+    width:56px;
+    height:56px;
+    border-radius:10px;
+    object-fit:cover;
+    border:1px solid var(--line);
+    background:var(--bg-raised);
+    flex-shrink:0;
+  }
+  .icon-empty{
+    width:56px;
+    height:56px;
+    border-radius:10px;
+    border:1px dashed var(--text-faint);
+    background:var(--bg-raised);
+    flex-shrink:0;
+  }
+  .lens:hover .icon{border-color:var(--accent);}
+  .lens:hover{background:var(--bg-raised);}
+  .lens:hover .lens-name{color:var(--accent);}
+  .lens:hover .arrow{transform:translateX(4px); opacity:1;}
+
+  .code{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--text-faint);
+  }
+  .lens-name{
+    font-size:19px;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    transition:color 0.15s ease;
+  }
+  .status{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:5px 10px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+  .status.live{color:var(--accent); border:1px solid rgba(0,217,255,0.35);}
+  .status.soon{color:var(--amber); border:1px solid rgba(255,176,0,0.3);}
+
+  .arrow{
+    font-size:18px;
+    color:var(--text-faint);
+    opacity:0;
+    transition:all 0.15s ease;
+  }
+  .lens:hover .arrow{color:var(--accent);}
+
+  .lens.disabled{cursor:default;}
+  .lens.disabled:hover{background:none;}
+  .lens.disabled .lens-name{color:var(--text-faint);}
+  .lens.disabled .arrow{display:none;}
+
+  @media (max-width:600px){
+    .lens{grid-template-columns:32px 44px 1fr auto; gap:12px;}
+    .icon, .icon-empty{width:44px; height:44px; border-radius:8px;}
+    .arrow{display:none;}
+    .lens-name{font-size:16px;}
+  }
+
+  footer{
+    max-width:920px;
+    margin:0 auto;
+    padding:40px 24px 60px;
+    color:var(--text-faint);
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    border-top:1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Augtrix Official</div>
+  <h1>Lens Catalog</h1>
+  <p>Every AR lens Augtrix has released, in one place. Tap a live lens to try it instantly in your browser — no app install needed.</p>
+  <div class="count-line">
+    <span><b id="count-live">0</b> live</span>
+    <span><b id="count-total">0</b> total</span>
+  </div>
+</header>
+
+<main>
+
+  <div class="group">
+    <div class="group-head">
+      <div class="group-title">Snapchat</div>
+      <div class="group-sub">Hosted WebAR</div>
+    </div>
+
+    <!-- LENS ROW TEMPLATE — copy this block for each new lens.
+         Icon: use <img class="icon" src="icons/FILE.jpg" alt="LENS NAME icon">
+         No icon yet: use <span class="icon-empty"></span> -->
+    <a class="lens" href="https://lens.snap.com/experience/608b7d82-dcbc-4cee-a4bd-482e94e5c94c" target="_blank" rel="noopener">
+      <span class="code mono">AGX-001</span>
+      <img class="icon" src="icons/augtrix-predator.jpg" alt="Augtrix Predator icon">
+      <span class="lens-name">Augtrix Predator</span>
+      <span class="status live">Live</span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="lens" href="#" target="_blank" rel="noopener">
+      <span class="code mono">AGX-002</span>
+      <span class="icon-empty"></span>
+      <span class="lens-name">Neo Prowler</span>
+      <span class="status live">Live</span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="lens" href="#" target="_blank" rel="noopener">
+      <span class="code mono">AGX-003</span>
+      <span class="icon-empty"></span>
+      <span class="lens-name">Augtrix Cybermask</span>
+      <span class="status live">Live</span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="lens" href="#" target="_blank" rel="noopener">
+      <span class="code mono">AGX-004</span>
+      <span class="icon-empty"></span>
+      <span class="lens-name">Adorn: Cyber Pulse</span>
+      <span class="status live">Live</span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="lens" href="#" target="_blank" rel="noopener">
+      <span class="code mono">AGX-005</span>
+      <span class="icon-empty"></span>
+      <span class="lens-name">Adorn: Gold Visor</span>
+      <span class="status live">Live</span>
+      <span class="arrow">→</span>
+    </a>
+
+    <div class="lens disabled">
+      <span class="code mono">AGX-006</span>
+      <span class="icon-empty"></span>
+      <span class="lens-name">Adorn: Emerald Edge</span>
+      <span class="status soon">Coming soon</span>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-head">
+      <div class="group-title">TikTok</div>
+      <div class="group-sub">Effect House</div>
+    </div>
+
+    <div class="lens disabled">
+      <span class="code mono">AGX-101</span>
+      <span class="icon-empty"></span>
+      <span class="lens-name">Adorn: Cyber Pulse</span>
+      <span class="status soon">Coming soon</span>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Augtrix — AR design studio.
+</footer>
+
+<script>
+  // Auto-count live vs total lenses so the header stays accurate as rows are added.
+  const lenses = document.querySelectorAll('.lens');
+  const live = document.querySelectorAll('.lens .status.live').length;
+  document.getElementById('count-live').textContent = live;
+  document.getElementById('count-total').textContent = lenses.length;
+</script>
+
+</body>
+</html>
