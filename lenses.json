@@ -1,7 +1,7 @@
 {
   "siteStats": {
-    "totalPlays": 35294,
-    "totalViews": 35837,
+    "totalPlays": 35302,
+    "totalViews": 35845,
     "totalShares": 198
   },
   "lenses": [
@@ -58,6 +58,15 @@
       "iconImg": "Adorn_JadeVisor_Icon.webp",
       "previewImg": "Adorn_JadeVisor_Preview.webp",
       "snapLink": "https://www.snapchat.com/lens/03913c9410ce460ca700180a993f360e"
+    },
+    {
+      "name": "Ignite Reflex Gaming Lens",
+      "description": "Reflex challenge built on the Predator mask. Raise your eyebrows, then lower them fast to burst incoming fireballs before they escape. One miss and it's game over.",
+      "tags": ["Reflex Game", "Motion Reactive", "Fire Trigger"],
+      "playCount": 8,
+      "iconImg": "IgniteReflex_Icon.webp",
+      "previewImg": "IgniteReflex_Preview.webp",
+      "snapLink": "https://www.snapchat.com/lens/f7f92979a7ce45b19134277839363f29"
     }
   ]
 }
