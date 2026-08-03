@@ -1,0 +1,72 @@
+{
+  "siteStats": {
+    "totalPlays": 39972,
+    "totalViews": 40590,
+    "totalShares": 211
+  },
+  "lenses": [
+    {
+      "name": "Augtrix Predator",
+      "description": "The flagship cybermask. Motion-reactive fire glow with eyebrow triggers. Lower brows to ignite, raise to extinguish.",
+      "tags": ["Motion Reactive", "Fire Glow", "Cybermask"],
+      "playCount": 22982,
+      "iconImg": "Augtrix_Predator_Icon.webp",
+      "previewImg": "Augtrix_Predator_Preview.webp",
+      "snapLink": "https://www.snapchat.com/lens/b7f5c72e32004bf399db11264fe26ab1"
+    },
+    {
+      "name": "Neo Prowler",
+      "description": "Stealth variant with cyan energy traces. Audio-reactive pulse synced to ambient sound. Minimalist cyberpunk aesthetic.",
+      "tags": ["Audio Reactive", "Stealth", "Cyan"],
+      "playCount": 5603,
+      "iconImg": "Neo_Prowler_Icon.webp",
+      "previewImg": "Neo_Prowler_Preview.webp",
+      "snapLink": "https://www.snapchat.com/lens/712c3847ceb044adb6d4a664d6fc6fe3"
+    },
+    {
+      "name": "Augtrix Cybermask",
+      "description": "Classic cyberpunk visor with holographic HUD elements. Red-eye targeting system with scan-line effects.",
+      "tags": ["HUD", "Holographic", "Military"],
+      "playCount": 2045,
+      "iconImg": "Augtrix_Cybermask_Icon.webp",
+      "previewImg": "Augtrix_Cybermask_Preview.webp",
+      "snapLink": "https://www.snapchat.com/lens/40a460187b9548f083161fff85d2c75c"
+    },
+    {
+      "name": "Adorn: Cyber Pulse",
+      "description": "Neon circuit face art in cyan and magenta. Symmetrical patterns with background toggle — paint splatter on/off.",
+      "tags": ["Neon Art", "Toggle BG", "Editorial"],
+      "playCount": 4785,
+      "iconImg": "Adorn_CyberPulse_Icon.webp",
+      "previewImg": "Adorn_CyberPulse_Preview.webp",
+      "snapLink": "https://www.snapchat.com/lens/022727978cfd4605ae8d73c2368aa918"
+    },
+    {
+      "name": "Adorn: Gold Visor",
+      "description": "Luxury gold circuit patterns with warm amber glow. Premium aesthetic for high-fashion content with subtle shimmer.",
+      "tags": ["Gold", "Luxury", "Fashion"],
+      "playCount": 2755,
+      "iconImg": "Adorn_GoldVisor_Icon.webp",
+      "previewImg": "Adorn_GoldVisor_Preview.webp",
+      "snapLink": "https://www.snapchat.com/lens/690978259eb246e3bdd8bfc6fe969c51"
+    },
+    {
+      "name": "Adorn: Jade Visor",
+      "description": "Emerald green circuit art with organic flow patterns. Nature-meets-tech aesthetic with leaf-like circuit branches.",
+      "tags": ["Jade", "Organic", "Nature-Tech"],
+      "playCount": 1794,
+      "iconImg": "Adorn_JadeVisor_Icon.webp",
+      "previewImg": "Adorn_JadeVisor_Preview.webp",
+      "snapLink": "https://www.snapchat.com/lens/03913c9410ce460ca700180a993f360e"
+    },
+    {
+      "name": "Ignite Reflex Gaming Lens",
+      "description": "Reflex challenge built on the Predator mask. Raise your eyebrows, then lower them fast to burst incoming fireballs before they escape. One miss and it's game over.",
+      "tags": ["Reflex Game", "Motion Reactive", "Fire Trigger"],
+      "playCount": 8,
+      "iconImg": "IgniteReflex_Icon.webp",
+      "previewImg": "IgniteReflex_Preview.webp",
+      "snapLink": "https://www.snapchat.com/lens/f7f92979a7ce45b19134277839363f29"
+    }
+  ]
+}
